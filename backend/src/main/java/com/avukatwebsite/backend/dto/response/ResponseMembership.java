@@ -1,0 +1,26 @@
+package com.avukatwebsite.backend.dto.response;
+
+import com.avukatwebsite.backend.entity.Lawyer;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDate;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class ResponseMembership {
+
+    private Lawyer fullName;
+
+    private String name;
+
+    private LocalDate startDate;
+
+    private LocalDate endDate;
+
+
+}
