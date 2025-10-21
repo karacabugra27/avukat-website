@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class RequestMembership {
 
-    private Lawyer lawyerId;
+    private Long lawyerId;
 
     private String name;
 

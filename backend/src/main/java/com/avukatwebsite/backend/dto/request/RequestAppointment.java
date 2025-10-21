@@ -20,6 +20,4 @@ public class RequestAppointment {
 
     private LocalTime endTime;
 
-    private Long lawyerId;
-
 }

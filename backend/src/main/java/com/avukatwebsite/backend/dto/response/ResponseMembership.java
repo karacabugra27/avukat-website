@@ -14,7 +14,11 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class ResponseMembership {
 
-    private Lawyer fullName;
+    private Long id;
+
+    private String firstName;
+
+    private String lastName;
 
     private String name;
 

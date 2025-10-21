@@ -16,6 +16,8 @@ import java.util.List;
 @AllArgsConstructor
 public class RequestLawyer {
 
+    private Long id;
+
     private String firstName;
 
     private String lastName;

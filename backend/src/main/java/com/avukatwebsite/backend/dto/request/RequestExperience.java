@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class RequestExperience {
 
-    private Lawyer lawyerId;
+    private Long lawyerId;
 
     private String title;
 
