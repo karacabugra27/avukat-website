@@ -1,14 +1,20 @@
 package com.avukatwebsite.backend.service;
 
-import com.avukatwebsite.backend.repository.AppointmentRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.avukatwebsite.backend.dto.request.RequestAppointment;
+import com.avukatwebsite.backend.dto.response.ResponseAppointment;
 
-@Service
-@RequiredArgsConstructor
-public class AppointmentService {
+import java.util.List;
 
-    private final AppointmentRepository appointmentRepository;
+public interface AppointmentService {
 
+    ResponseAppointment createAppointment(RequestAppointment dto);
+
+    List<ResponseAppointment> getAllAppointments();
+
+    List<ResponseAppointment> getByScheduleId(Long scheduleId);
+
+    void delete(Long id);
+
+    ResponseAppointment update(Long id, RequestAppointment dto);
 
 }

@@ -1,6 +1,5 @@
 package com.avukatwebsite.backend.dto.request;
 
-import com.avukatwebsite.backend.entity.Lawyer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
