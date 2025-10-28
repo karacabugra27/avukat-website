@@ -1,23 +1,87 @@
-import { btnPrimary, btnSecondary, linkPrimary } from "../styles";
-import { Link } from "react-router-dom";
+import { Check, UserRound, CalendarDays, DollarSign, Video } from "lucide-react";
 
 export default function Index() {
   return (
-    <div className="card bg-base-100 w-96 shadow-sm">
-      <figure>
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-          alt="Shoes" />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title">Card Title</h2>
-        <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-        <div className="card-actions justify-end">
-          <button className={btnPrimary}>Buy Now</button>
-          <button className={btnSecondary}>Buy Later</button>
-          <Link to={'/iletisim'} className={linkPrimary}>İletişime Geç</Link>
+    <>
+      {/* Hero with bg image */}
+      <div
+        className="hero min-h-screen"
+        style={{
+          backgroundImage: "url(/public/76-scaled.jpg)"
+        }}
+      >
+        <div className="hero-overlay bg-black/60"></div>
+        <div className="hero-content text-neutral-content text-center">
+          <div className="max-w-xl">
+            <h1 className="mb-5 text-5xl font-bold text-[var(--color-primary)]">Lorem Ipsum</h1>
+            <p className="mb-5 text-white">
+              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
+              quasi. In deleniti eaque aut repudiandae et a id nisi.
+            </p>
+            <button className="btn btn-primary">Get Started</button>
+          </div>
         </div>
       </div>
-    </div>
+      {/* Hero */}
+      <div className="hero bg-base-200 min-h-[400px]">
+        <div className="hero-content text-center">
+          <div>
+            <span className="text-3xl border-b-1 border-gray-600 px-5 font-semibold text-gray-500">Hukuk Bürosu</span>
+            <h1 className="text-4xl mt-3 text-gray-600">Online Hukuki Danışmanlık</h1>
+            <h2 className="text-lg mt-5 text-gray-500">Online Avukat Hizmeti ile Hızlı ve Güvenli Hukuki Danışmanlık</h2>
+            <p className="text-gray-500">
+              Online hukuki danışmanlık sistemimiz, internet bağlantınızın olduğu her yerden bilgisayar, tablet veya cep telefonu aracılığıyla uzman avukatlarla görüntülü görüşme yapabileceğiniz güvenli ve kullanıcı dostu bir platformdur
+            </p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 mt-6">
+              <div className="col-span-1 flex p-4 hover:shadow-xl transition-all duration-500">
+                <div className="bg-[var(--color-primary)]/20 text-[var(--color-primary)] rounded-lg p-4">
+                  <Check />
+                </div>
+                <p className="text-gray-500">Yüz yüze görüşme zorunluluğunu ortadan kaldıran bu sistem sayesinde, hukuki destek almak artık çok daha kolay.</p>
+              </div>
+              <div className="col-span-1 flex p-4 hover:shadow-2xl transition-all duration-500">
+                <div className="bg-[var(--color-primary)]/20 text-[var(--color-primary)] rounded-lg p-4">
+                  <Check />
+                </div>
+                <p className="text-gray-500">Online avukat hizmeti ile zamandan tasarruf eder, hukuki sürecinizi güvenle yönetirsiniz.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-gray-300 px-24 py-12 border-b-2 border-slate-100">
+        <div className="col-span-4">
+          <h1 className="text-4xl text-center text-gray-600">Online Randevu Nasıl Oluşturulur</h1>
+        </div>
+        <div className="flex flex-col items-center justify-center gap-3 bg-white p-8 rounded-xl shadow-sm">
+          <div className="bg-[var(--color-primary)]/20 text-[var(--color-primary)] rounded-xl p-4">
+            <UserRound />
+          </div>
+          <h1 className="text-xl font-semibold text-gray-600">Avukatını Seç</h1>
+          <p className="text-center text-lg text-gray-500">Sistemimizdeki avukatların çalışma ve uzmanlık alanlarını inceleyerek size en uygun olan avukatı seçebilirsiniz</p>
+        </div>
+        <div className="flex flex-col items-center justify-center gap-3 bg-white p-8 rounded-xl shadow-sm">
+          <div className="bg-[var(--color-primary)]/20 text-[var(--color-primary)] rounded-xl p-4">
+            <CalendarDays />
+          </div>
+          <h1 className="text-xl font-semibold text-center text-gray-600">Görüşmeni Planla</h1>
+          <p className="text-center text-lg text-gray-500">Görüntülü ya da sesli olarak görüşmeye hemen başlayabilir veya size en uygun tarihe randevu oluşturabilirsiniz</p>
+        </div>
+        <div className="flex flex-col items-center justify-center gap-3 bg-white p-8 rounded-xl shadow-sm">
+          <div className="bg-[var(--color-primary)]/20 text-[var(--color-primary)] rounded-xl p-4">
+            <DollarSign />
+          </div>
+          <h1 className="text-xl font-semibold text-center text-gray-600">Ödemeni Tamamla</h1>
+          <p className="text-center text-lg text-gray-500">Online olarak banka kartı ya da kredi kartı ile güvenli ve hızlı bir şekilde ödemenizi tamamlayabilirsiniz</p>
+        </div>
+        <div className="flex flex-col items-center justify-center gap-3 bg-white p-8 rounded-xl shadow-sm">
+          <div className="bg-[var(--color-primary)]/20 text-[var(--color-primary)] rounded-xl p-4">
+            <Video />
+          </div>
+          <h1 className="text-xl font-semibold text-center text-gray-600">Görüşmeni Yap</h1>
+          <p className="text-center text-lg text-gray-500">Randevu saatinizde SMS yoluyla tarafınıza gelen link üzerinden sisteme giriş yaparak görüşmenizi gerçekleştirebilirsiniz</p>
+        </div>
+      </div>
+    </>
   );
 }
