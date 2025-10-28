@@ -24,15 +24,12 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     public ResponseAppointment createAppointment(RequestAppointment dto) {
-        //önce koşulumuz
         LawyerSchedule schedule = lawyerScheduleRepository.findById(dto.getScheduleId())
                 .orElseThrow(() -> new RuntimeException("Schedule bulunamadı"));
 
-        //entityimizi alıyoruz
-        Appointment entity = appointmentMapper.toEntity(dto,schedule);
+        Appointment entity = appointmentMapper.toEntity(dto, schedule);
         entity.setSchedule(schedule);
 
-        //entity kaydediyoruz ve dtoya çevirip dönüyoruz
         Appointment saved = appointmentRepository.save(entity);
         return appointmentMapper.toDto(saved);
     }
@@ -68,7 +65,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         Appointment entity = appointmentRepository.findById(id)
                 .orElseThrow();
 
-        if (!entity.getSchedule().getId().equals(dto.getScheduleId())) {
+        if (dto.getScheduleId() != null && !entity.getSchedule().getId().equals(dto.getScheduleId())) {
             LawyerSchedule schedule = lawyerScheduleRepository.findById(dto.getScheduleId())
                     .orElseThrow(() -> new RuntimeException("Schedule not found: " + dto.getScheduleId()));
             entity.setSchedule(schedule);
@@ -77,6 +74,9 @@ public class AppointmentServiceImpl implements AppointmentService {
         entity.setAppointmentDate(dto.getAppointmentDate());
         entity.setStartTime(dto.getStartTime());
         entity.setEndTime(dto.getEndTime());
+        entity.setClientFirstName(dto.getClientFirstName());
+        entity.setClientLastName(dto.getClientLastName());
+        entity.setClientPhone(dto.getClientPhone());
 
         appointmentRepository.save(entity);
 

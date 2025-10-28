@@ -14,16 +14,18 @@ public interface AppointmentMapper {
 
     @Mapping(target = "scheduleId", source = "schedule.id")
     @Mapping(target = "lawyerId", source = "schedule.lawyer.id")
-    @Mapping(target = "firstName", source = "schedule.lawyer.firstName")
-    @Mapping(target = "lastName", source = "schedule.lawyer.lastName")
+    @Mapping(target = "lawyerFirstName", source = "schedule.lawyer.firstName")
+    @Mapping(target = "lawyerLastName", source = "schedule.lawyer.lastName")
     ResponseAppointment toDto(Appointment entity);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "schedule", source = "schedule")
     @Mapping(target = "appointmentDate", source = "dto.appointmentDate")
     @Mapping(target = "startTime", source = "dto.startTime")
     @Mapping(target = "endTime", source = "dto.endTime")
-    @Mapping(target = "schedule", source = "schedule")
+    @Mapping(target = "clientFirstName", source = "dto.clientFirstName")
+    @Mapping(target = "clientLastName", source = "dto.clientLastName")
+    @Mapping(target = "clientPhone", source = "dto.clientPhone")
     Appointment toEntity(RequestAppointment dto, LawyerSchedule schedule);
-
 
 }

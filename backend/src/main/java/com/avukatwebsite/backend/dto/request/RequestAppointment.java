@@ -22,4 +22,10 @@ public class RequestAppointment {
 
     private LocalTime endTime;
 
+    private String clientFirstName;
+
+    private String clientLastName;
+
+    private String clientPhone;
+
 }

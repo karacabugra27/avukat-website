@@ -26,9 +26,15 @@ public class ResponseAppointment {
 
     private Long lawyerId;
 
-    private String firstName;
+    private String lawyerFirstName;
 
-    private String lastName;
+    private String lawyerLastName;
+
+    private String clientFirstName;
+
+    private String clientLastName;
+
+    private String clientPhone;
 
 
 

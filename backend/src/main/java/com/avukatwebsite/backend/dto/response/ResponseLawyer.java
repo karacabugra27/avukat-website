@@ -1,20 +1,17 @@
 package com.avukatwebsite.backend.dto.response;
 
-import com.avukatwebsite.backend.entity.Experience;
-import com.avukatwebsite.backend.entity.LawyerSchedule;
-import com.avukatwebsite.backend.entity.Membership;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResponseLawyer {
+
+    private Long id;
 
     private String firstName;
 
@@ -24,10 +21,5 @@ public class ResponseLawyer {
 
     private String bio;
 
-    private List<Experience> experiences;
-
-    private List<Membership> memberships;
-
-    private List<LawyerSchedule> lawyerSchedule;
 
 }

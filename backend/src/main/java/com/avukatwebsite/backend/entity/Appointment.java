@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -36,7 +35,14 @@ public class Appointment {
     @Column(nullable = false)
     private LocalTime endTime;
 
-    //eklenecek şeyler var.
+    @Column(nullable = false)
+    private String clientFirstName;
+
+    @Column(nullable = false)
+    private String clientLastName;
+
+    @Column(nullable = false)
+    private String clientPhone;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lawyer_schedule_id")

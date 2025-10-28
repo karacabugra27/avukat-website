@@ -1,7 +1,5 @@
 package com.avukatwebsite.backend.dto.response;
 
-import com.avukatwebsite.backend.entity.Appointment;
-import com.avukatwebsite.backend.entity.Lawyer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +17,8 @@ public class ResponseLawyerSchedule {
 
     private Long id;
 
+    private Long lawyerId;
+
     private String firstName;
 
     private String lastName;
@@ -29,8 +29,8 @@ public class ResponseLawyerSchedule {
 
     private LocalTime endTime;
 
-    private boolean isDayOff;
+    private boolean dayOff;
 
-    private List<Appointment> appointments;
+    private List<ResponseAppointment> appointments;
 
 }

@@ -32,7 +32,6 @@ public class Lawyer {
     @Column(nullable = false)
     private String bio;
 
-    @Column(nullable = true)
     @OneToMany(mappedBy = "lawyer")
     private List<Experience> experiences;
 

@@ -30,7 +30,7 @@ public class LawyerSchedule {
     private LocalTime endTime;
 
     @Column(nullable = false)
-    private boolean isDayOff;
+    private boolean dayOff;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lawyer_id")
