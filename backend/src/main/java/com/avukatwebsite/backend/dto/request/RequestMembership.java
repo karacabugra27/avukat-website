@@ -1,6 +1,5 @@
 package com.avukatwebsite.backend.dto.request;
 
-import com.avukatwebsite.backend.entity.Lawyer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class RequestMembership {
 
-    private Lawyer lawyerId;
+    private Long lawyerId;
 
     private String name;
 

@@ -1,6 +1,5 @@
 package com.avukatwebsite.backend.dto.response;
 
-import com.avukatwebsite.backend.entity.Lawyer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +13,11 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class ResponseMembership {
 
-    private Lawyer fullName;
+    private Long id;
+
+    private String firstName;
+
+    private String lastName;
 
     private String name;
 

@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class RequestLawyerSchedule {
 
-    private Lawyer lawyerId;
+    private Long lawyerId;
 
     private DayOfWeek dayOfWeek;
 

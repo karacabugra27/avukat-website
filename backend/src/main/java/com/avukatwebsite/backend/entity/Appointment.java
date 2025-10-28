@@ -18,7 +18,7 @@ import java.util.Date;
 @Table(
         name = "appointment",
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = {"lawyer_id", "appointment_date", "start_time"})
+                @UniqueConstraint(columnNames = {"lawyer_schedule_id", "appointment_date", "start_time"})
         }
 )
 public class Appointment {
@@ -39,7 +39,7 @@ public class Appointment {
     //eklenecek şeyler var.
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "lawyer_schedule_id")
     private LawyerSchedule schedule;
 
 }

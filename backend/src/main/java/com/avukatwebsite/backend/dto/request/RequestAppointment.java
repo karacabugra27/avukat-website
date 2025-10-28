@@ -14,12 +14,12 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class RequestAppointment {
 
+    private Long scheduleId;
+
     private LocalDate appointmentDate;
 
     private LocalTime startTime;
 
     private LocalTime endTime;
-
-    private Long lawyerId;
 
 }

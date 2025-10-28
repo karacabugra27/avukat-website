@@ -36,7 +36,6 @@ public class Lawyer {
     @OneToMany(mappedBy = "lawyer")
     private List<Experience> experiences;
 
-    @Column(nullable = false)
     @OneToMany(mappedBy = "lawyer")
     private List<Membership> memberships;
 

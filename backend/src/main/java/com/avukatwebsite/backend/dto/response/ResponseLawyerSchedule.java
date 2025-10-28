@@ -17,7 +17,11 @@ import java.util.List;
 @AllArgsConstructor
 public class ResponseLawyerSchedule {
 
-    private Lawyer fullName;
+    private Long id;
+
+    private String firstName;
+
+    private String lastName;
 
     private DayOfWeek dayOfWeek;
 

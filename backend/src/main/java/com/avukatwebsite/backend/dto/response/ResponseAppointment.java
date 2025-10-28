@@ -1,6 +1,5 @@
 package com.avukatwebsite.backend.dto.response;
 
-import com.avukatwebsite.backend.entity.Lawyer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,13 +14,21 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class ResponseAppointment {
 
-    private Lawyer fullName;
+    private Long id;
 
     private LocalDate appointmentDate;
 
     private LocalTime startTime;
 
     private LocalTime endTime;
+
+    private Long scheduleId;
+
+    private Long lawyerId;
+
+    private String firstName;
+
+    private String lastName;
 
 
 

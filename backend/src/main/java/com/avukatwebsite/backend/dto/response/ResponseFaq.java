@@ -11,6 +11,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ResponseFaq {
 
+    private Long id;
+
     private String question;
 
     private String answer;
