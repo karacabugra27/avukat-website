@@ -1,5 +1,6 @@
 package com.avukatwebsite.backend.service.impl;
 
+import com.avukatwebsite.backend.config.TraceIdFilter;
 import com.avukatwebsite.backend.dto.request.RequestAppointment;
 import com.avukatwebsite.backend.dto.response.ResponseAppointment;
 import com.avukatwebsite.backend.entity.Appointment;
@@ -12,11 +13,14 @@ import com.avukatwebsite.backend.repository.AppointmentRepository;
 import com.avukatwebsite.backend.repository.LawyerScheduleRepository;
 import com.avukatwebsite.backend.service.AppointmentService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AppointmentServiceImpl implements AppointmentService {
@@ -40,6 +44,8 @@ public class AppointmentServiceImpl implements AppointmentService {
         entity.setSchedule(schedule);
 
         Appointment saved = appointmentRepository.save(entity);
+        log.info("[traceId={}] Randevu oluşturuldu id={}, scheduleId={}, appointmentDate={}",
+                traceId(), saved.getId(), schedule.getId(), saved.getAppointmentDate());
         return appointmentMapper.toDto(saved);
     }
 
@@ -67,6 +73,7 @@ public class AppointmentServiceImpl implements AppointmentService {
                         "Randevu bulunamadı: " + id));
 
         appointmentRepository.delete(appointment);
+        log.info("[traceId={}] Randevu silindi id={}", traceId(), id);
     }
 
     @Override
@@ -107,6 +114,8 @@ public class AppointmentServiceImpl implements AppointmentService {
         ensureScheduleAllowsAppointment(entity.getSchedule(), entity.getStartTime(), entity.getEndTime());
 
         Appointment saved = appointmentRepository.save(entity);
+        log.info("[traceId={}] Randevu güncellendi id={}, scheduleId={}",
+                traceId(), id, entity.getSchedule().getId());
         return appointmentMapper.toDto(saved);
     }
 
@@ -136,5 +145,9 @@ public class AppointmentServiceImpl implements AppointmentService {
             throw new BusinessException(ErrorType.APPOINTMENT_TIME_INVALID,
                     "Randevu saati çalışma saatleri dışında olamaz.");
         }
+    }
+
+    private String traceId() {
+        return MDC.get(TraceIdFilter.TRACE_ID_KEY);
     }
 }

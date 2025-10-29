@@ -1,5 +1,6 @@
 package com.avukatwebsite.backend.service.impl;
 
+import com.avukatwebsite.backend.config.TraceIdFilter;
 import com.avukatwebsite.backend.dto.request.RequestLawyer;
 import com.avukatwebsite.backend.dto.response.ResponseLawyer;
 import com.avukatwebsite.backend.entity.Lawyer;
@@ -10,11 +11,14 @@ import com.avukatwebsite.backend.mapper.LawyerMapper;
 import com.avukatwebsite.backend.repository.LawyerRepository;
 import com.avukatwebsite.backend.service.LawyerService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class LawyerServiceImpl implements LawyerService {
@@ -33,6 +37,7 @@ public class LawyerServiceImpl implements LawyerService {
         Lawyer entity = lawyerMapper.toEntity(dto);
         entity.setId(null);
         Lawyer saved = lawyerRepository.save(entity);
+        log.info("[traceId={}] Avukat oluşturuldu id={}, email={}", traceId(), saved.getId(), saved.getEmail());
         return lawyerMapper.toDto(saved);
     }
 
@@ -71,6 +76,7 @@ public class LawyerServiceImpl implements LawyerService {
 
         applyUpdates(lawyer, dto);
         Lawyer saved = lawyerRepository.save(lawyer);
+        log.info("[traceId={}] Avukat güncellendi id={}", traceId(), id);
         return lawyerMapper.toDto(saved);
     }
 
@@ -83,6 +89,7 @@ public class LawyerServiceImpl implements LawyerService {
                     "Avukat bulunamadı: " + id);
         }
         lawyerRepository.deleteById(id);
+        log.info("[traceId={}] Avukat silindi id={}", traceId(), id);
     }
 
     private void applyUpdates(Lawyer target, RequestLawyer source) {
@@ -98,5 +105,9 @@ public class LawyerServiceImpl implements LawyerService {
         if (source.getBio() != null) {
             target.setBio(source.getBio());
         }
+    }
+
+    private String traceId() {
+        return MDC.get(TraceIdFilter.TRACE_ID_KEY);
     }
 }

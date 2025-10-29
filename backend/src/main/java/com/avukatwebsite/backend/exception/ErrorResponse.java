@@ -10,14 +10,19 @@ public record ErrorResponse(
         String message,
         String path,
         Map<String, String> validationErrors,
+        String traceId,
         Instant timestamp
 ) {
 
-    public static ErrorResponse from(ErrorType errorType, String message, String path) {
-        return from(errorType, message, path, null);
+    public static ErrorResponse from(ErrorType errorType, String message, String path, String traceId) {
+        return from(errorType, message, path, null, traceId);
     }
 
-    public static ErrorResponse from(ErrorType errorType, String message, String path, Map<String, String> validationErrors) {
+    public static ErrorResponse from(ErrorType errorType,
+                                     String message,
+                                     String path,
+                                     Map<String, String> validationErrors,
+                                     String traceId) {
         return new ErrorResponse(
                 errorType.getCode(),
                 errorType.getHttpStatus().value(),
@@ -25,6 +30,7 @@ public record ErrorResponse(
                 message,
                 path,
                 validationErrors,
+                traceId,
                 Instant.now()
         );
     }

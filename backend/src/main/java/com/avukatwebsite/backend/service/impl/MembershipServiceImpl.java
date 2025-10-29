@@ -1,5 +1,6 @@
 package com.avukatwebsite.backend.service.impl;
 
+import com.avukatwebsite.backend.config.TraceIdFilter;
 import com.avukatwebsite.backend.dto.request.RequestMembership;
 import com.avukatwebsite.backend.dto.response.ResponseMembership;
 import com.avukatwebsite.backend.entity.Lawyer;
@@ -12,11 +13,14 @@ import com.avukatwebsite.backend.repository.LawyerRepository;
 import com.avukatwebsite.backend.repository.MembershipRepository;
 import com.avukatwebsite.backend.service.MembershipService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class MembershipServiceImpl implements MembershipService {
@@ -35,6 +39,7 @@ public class MembershipServiceImpl implements MembershipService {
         entity.setLawyer(lawyer);
 
         Membership saved = membershipRepository.save(entity);
+        log.info("[traceId={}] Üyelik oluşturuldu id={}, lawyerId={}", traceId(), saved.getId(), lawyer.getId());
         return membershipMapper.toDto(saved);
     }
 
@@ -63,6 +68,7 @@ public class MembershipServiceImpl implements MembershipService {
                     "Üyelik bulunamadı: " + id);
         }
         membershipRepository.deleteById(id);
+        log.info("[traceId={}] Üyelik silindi id={}", traceId(), id);
     }
 
     @Override
@@ -88,6 +94,7 @@ public class MembershipServiceImpl implements MembershipService {
         validateDateRange(membership.getStartDate(), membership.getEndDate());
 
         Membership saved = membershipRepository.save(membership);
+        log.info("[traceId={}] Üyelik güncellendi id={}", traceId(), id);
         return membershipMapper.toDto(saved);
     }
 
@@ -108,5 +115,9 @@ public class MembershipServiceImpl implements MembershipService {
         if (endDate.isBefore(startDate)) {
             throw new BusinessException(ErrorType.MEMBERSHIP_INVALID_DATE_RANGE);
         }
+    }
+
+    private String traceId() {
+        return MDC.get(TraceIdFilter.TRACE_ID_KEY);
     }
 }

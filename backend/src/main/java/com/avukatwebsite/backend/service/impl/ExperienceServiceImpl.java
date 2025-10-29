@@ -1,5 +1,6 @@
 package com.avukatwebsite.backend.service.impl;
 
+import com.avukatwebsite.backend.config.TraceIdFilter;
 import com.avukatwebsite.backend.dto.request.RequestExperience;
 import com.avukatwebsite.backend.dto.response.ResponseExperience;
 import com.avukatwebsite.backend.entity.Experience;
@@ -11,11 +12,14 @@ import com.avukatwebsite.backend.repository.ExperienceRepository;
 import com.avukatwebsite.backend.repository.LawyerRepository;
 import com.avukatwebsite.backend.service.ExperienceService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ExperienceServiceImpl implements ExperienceService {
@@ -35,6 +39,8 @@ public class ExperienceServiceImpl implements ExperienceService {
         entity.setLawyer(lawyer);
 
         Experience saved = experienceRepository.save(entity);
+        log.info("[traceId={}] Deneyim oluşturuldu id={}, lawyerId={}",
+                traceId(), saved.getId(), lawyer.getId());
         return experienceMapper.toDto(saved);
     }
 
@@ -59,6 +65,7 @@ public class ExperienceServiceImpl implements ExperienceService {
         Optional<Experience> isExist = experienceRepository.findById(id);
         if (isExist.isPresent()) {
             experienceRepository.deleteById(id);
+            log.info("[traceId={}] Deneyim silindi id={}", traceId(), id);
         } else {
             throw new ResourceNotFoundException(
                     ErrorType.EXPERIENCE_NOT_FOUND,
@@ -73,7 +80,7 @@ public class ExperienceServiceImpl implements ExperienceService {
                         ErrorType.EXPERIENCE_NOT_FOUND,
                         "Deneyim bulunamadı: " + id));
 
-        if(!entity.getLawyer().getId().equals(dto.getLawyerId())){
+        if (!entity.getLawyer().getId().equals(dto.getLawyerId())) {
             Lawyer lawyer = lawyerRepository.findById(dto.getLawyerId())
                     .orElseThrow(() -> new ResourceNotFoundException(
                             ErrorType.LAWYER_NOT_FOUND,
@@ -84,10 +91,14 @@ public class ExperienceServiceImpl implements ExperienceService {
         entity.setTitle(dto.getTitle());
         entity.setDescription(dto.getDescription());
 
-        experienceRepository.save(entity);
+        Experience saved = experienceRepository.save(entity);
+        log.info("[traceId={}] Deneyim güncellendi id={}, lawyerId={}",
+                traceId(), id, saved.getLawyer().getId());
 
-        return experienceMapper.toDto(entity);
+        return experienceMapper.toDto(saved);
     }
 
-
+    private String traceId() {
+        return MDC.get(TraceIdFilter.TRACE_ID_KEY);
+    }
 }

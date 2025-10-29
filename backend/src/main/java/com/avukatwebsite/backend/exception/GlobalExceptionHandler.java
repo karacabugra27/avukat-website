@@ -1,9 +1,11 @@
 package com.avukatwebsite.backend.exception;
 
+import com.avukatwebsite.backend.config.TraceIdFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -30,7 +32,8 @@ public class GlobalExceptionHandler {
                 ErrorType.VALIDATION_FAILED,
                 ErrorType.VALIDATION_FAILED.getDefaultMessage(),
                 request.getRequestURI(),
-                fieldErrors
+                fieldErrors,
+                currentTraceId()
         );
 
         return ResponseEntity.status(ErrorType.VALIDATION_FAILED.getHttpStatus()).body(response);
@@ -48,7 +51,8 @@ public class GlobalExceptionHandler {
                 ErrorType.VALIDATION_FAILED,
                 ErrorType.VALIDATION_FAILED.getDefaultMessage(),
                 request.getRequestURI(),
-                violations
+                violations,
+                currentTraceId()
         );
 
         return ResponseEntity.status(ErrorType.VALIDATION_FAILED.getHttpStatus()).body(response);
@@ -63,7 +67,8 @@ public class GlobalExceptionHandler {
         ErrorResponse response = ErrorResponse.from(
                 errorType,
                 exception.getMessage(),
-                request.getRequestURI()
+                request.getRequestURI(),
+                currentTraceId()
         );
 
         return ResponseEntity.status(errorType.getHttpStatus()).body(response);
@@ -77,7 +82,8 @@ public class GlobalExceptionHandler {
         ErrorResponse response = ErrorResponse.from(
                 ErrorType.GENERIC_BUSINESS_ERROR,
                 "Veri bütünlüğü ihlali",
-                request.getRequestURI()
+                request.getRequestURI(),
+                currentTraceId()
         );
 
         return ResponseEntity.status(ErrorType.GENERIC_BUSINESS_ERROR.getHttpStatus()).body(response);
@@ -91,9 +97,14 @@ public class GlobalExceptionHandler {
         ErrorResponse response = ErrorResponse.from(
                 ErrorType.INTERNAL_SERVER_ERROR,
                 ErrorType.INTERNAL_SERVER_ERROR.getDefaultMessage(),
-                request.getRequestURI()
+                request.getRequestURI(),
+                currentTraceId()
         );
 
         return ResponseEntity.status(ErrorType.INTERNAL_SERVER_ERROR.getHttpStatus()).body(response);
+    }
+
+    private String currentTraceId() {
+        return MDC.get(TraceIdFilter.TRACE_ID_KEY);
     }
 }

@@ -1,5 +1,6 @@
 package com.avukatwebsite.backend.service.impl;
 
+import com.avukatwebsite.backend.config.TraceIdFilter;
 import com.avukatwebsite.backend.dto.request.RequestLawyerSchedule;
 import com.avukatwebsite.backend.dto.response.ResponseLawyerSchedule;
 import com.avukatwebsite.backend.entity.Lawyer;
@@ -12,6 +13,8 @@ import com.avukatwebsite.backend.repository.LawyerRepository;
 import com.avukatwebsite.backend.repository.LawyerScheduleRepository;
 import com.avukatwebsite.backend.service.LawyerScheduleService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +22,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class LawyerScheduleServiceImpl implements LawyerScheduleService {
@@ -39,6 +43,8 @@ public class LawyerScheduleServiceImpl implements LawyerScheduleService {
         validateTimeRange(entity.getStartTime(), entity.getEndTime(), entity.isDayOff());
 
         LawyerSchedule saved = lawyerScheduleRepository.save(entity);
+        log.info("[traceId={}] Çalışma takvimi oluşturuldu id={}, lawyerId={}, dayOff={}",
+                traceId(), saved.getId(), saved.getLawyer().getId(), saved.isDayOff());
         return lawyerScheduleMapper.toDto(saved);
     }
 
@@ -69,6 +75,7 @@ public class LawyerScheduleServiceImpl implements LawyerScheduleService {
                     "Çalışma takvimi bulunamadı: " + id);
         }
         lawyerScheduleRepository.deleteById(id);
+        log.info("[traceId={}] Çalışma takvimi silindi id={}", traceId(), id);
     }
 
     @Override
@@ -98,6 +105,8 @@ public class LawyerScheduleServiceImpl implements LawyerScheduleService {
         validateTimeRange(schedule.getStartTime(), schedule.getEndTime(), schedule.isDayOff());
 
         LawyerSchedule saved = lawyerScheduleRepository.save(schedule);
+        log.info("[traceId={}] Çalışma takvimi güncellendi id={}, dayOff={}",
+                traceId(), id, saved.isDayOff());
         return lawyerScheduleMapper.toDto(saved);
     }
 
@@ -132,5 +141,9 @@ public class LawyerScheduleServiceImpl implements LawyerScheduleService {
         if (!start.isBefore(end)) {
             throw new BusinessException(ErrorType.LAWYER_SCHEDULE_INVALID_TIME_RANGE);
         }
+    }
+
+    private String traceId() {
+        return MDC.get(TraceIdFilter.TRACE_ID_KEY);
     }
 }
