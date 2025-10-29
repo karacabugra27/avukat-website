@@ -3,6 +3,8 @@ package com.avukatwebsite.backend.service.impl;
 import com.avukatwebsite.backend.dto.request.RequestFaq;
 import com.avukatwebsite.backend.dto.response.ResponseFaq;
 import com.avukatwebsite.backend.entity.Faq;
+import com.avukatwebsite.backend.exception.ErrorType;
+import com.avukatwebsite.backend.exception.ResourceNotFoundException;
 import com.avukatwebsite.backend.mapper.FaqMapper;
 import com.avukatwebsite.backend.repository.FaqRepository;
 import com.avukatwebsite.backend.service.FaqService;
@@ -38,7 +40,9 @@ public class FaqServiceImpl implements FaqService {
     @Override
     public ResponseFaq getFaqById(Long id) {
         Faq faq = faqRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("FAQ not found: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        ErrorType.FAQ_NOT_FOUND,
+                        "SSS kaydı bulunamadı: " + id));
         return faqMapper.toDto(faq);
     }
 
@@ -48,13 +52,18 @@ public class FaqServiceImpl implements FaqService {
         if (isExist.isPresent()) {
             faqRepository.deleteById(id);
         } else {
-            throw new RuntimeException("bu id'de faq yok");
+            throw new ResourceNotFoundException(
+                    ErrorType.FAQ_NOT_FOUND,
+                    "SSS kaydı bulunamadı: " + id);
         }
     }
 
     @Override
     public ResponseFaq update(Long id, RequestFaq dto) {
-        Faq entity = faqRepository.findById(id).orElseThrow();
+        Faq entity = faqRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        ErrorType.FAQ_NOT_FOUND,
+                        "SSS kaydı bulunamadı: " + id));
         entity.setQuestion(dto.getQuestion());
         entity.setAnswer(dto.getAnswer());
 

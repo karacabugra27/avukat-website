@@ -1,8 +1,12 @@
 package com.avukatwebsite.backend.exception;
 
-public class ResourceNotFoundException extends RuntimeException {
+public class ResourceNotFoundException extends BaseException {
 
-    public ResourceNotFoundException(String message) {
-        super(message);
+    public ResourceNotFoundException(ErrorType errorType) {
+        super(errorType);
+    }
+
+    public ResourceNotFoundException(ErrorType errorType, String message) {
+        super(errorType, message);
     }
 }

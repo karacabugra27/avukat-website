@@ -4,6 +4,8 @@ import com.avukatwebsite.backend.dto.request.RequestExperience;
 import com.avukatwebsite.backend.dto.response.ResponseExperience;
 import com.avukatwebsite.backend.entity.Experience;
 import com.avukatwebsite.backend.entity.Lawyer;
+import com.avukatwebsite.backend.exception.ErrorType;
+import com.avukatwebsite.backend.exception.ResourceNotFoundException;
 import com.avukatwebsite.backend.mapper.ExperienceMapper;
 import com.avukatwebsite.backend.repository.ExperienceRepository;
 import com.avukatwebsite.backend.repository.LawyerRepository;
@@ -25,7 +27,9 @@ public class ExperienceServiceImpl implements ExperienceService {
     @Override
     public ResponseExperience createExperience(RequestExperience dto) {
         Lawyer lawyer = lawyerRepository.findById(dto.getLawyerId())
-                .orElseThrow(() -> new RuntimeException("Lawyer bulunamadı"));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        ErrorType.LAWYER_NOT_FOUND,
+                        "Avukat bulunamadı: " + dto.getLawyerId()));
 
         Experience entity = experienceMapper.toEntity(dto);
         entity.setLawyer(lawyer);
@@ -56,18 +60,24 @@ public class ExperienceServiceImpl implements ExperienceService {
         if (isExist.isPresent()) {
             experienceRepository.deleteById(id);
         } else {
-            throw new RuntimeException("bu id yok");
+            throw new ResourceNotFoundException(
+                    ErrorType.EXPERIENCE_NOT_FOUND,
+                    "Deneyim bulunamadı: " + id);
         }
     }
 
     @Override
     public ResponseExperience update(Long id, RequestExperience dto) {
         Experience entity = experienceRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("id bulunamadı"));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        ErrorType.EXPERIENCE_NOT_FOUND,
+                        "Deneyim bulunamadı: " + id));
 
         if(!entity.getLawyer().getId().equals(dto.getLawyerId())){
             Lawyer lawyer = lawyerRepository.findById(dto.getLawyerId())
-                    .orElseThrow(() -> new RuntimeException("Lawyer bulunamadı"));
+                    .orElseThrow(() -> new ResourceNotFoundException(
+                            ErrorType.LAWYER_NOT_FOUND,
+                            "Avukat bulunamadı: " + dto.getLawyerId()));
             entity.setLawyer(lawyer);
         }
 

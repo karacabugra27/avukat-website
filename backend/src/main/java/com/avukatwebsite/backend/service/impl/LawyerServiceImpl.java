@@ -3,6 +3,8 @@ package com.avukatwebsite.backend.service.impl;
 import com.avukatwebsite.backend.dto.request.RequestLawyer;
 import com.avukatwebsite.backend.dto.response.ResponseLawyer;
 import com.avukatwebsite.backend.entity.Lawyer;
+import com.avukatwebsite.backend.exception.BusinessException;
+import com.avukatwebsite.backend.exception.ErrorType;
 import com.avukatwebsite.backend.exception.ResourceNotFoundException;
 import com.avukatwebsite.backend.mapper.LawyerMapper;
 import com.avukatwebsite.backend.repository.LawyerRepository;
@@ -24,7 +26,8 @@ public class LawyerServiceImpl implements LawyerService {
     @Transactional
     public ResponseLawyer create(RequestLawyer dto) {
         if (dto.getEmail() != null && lawyerRepository.existsByEmail(dto.getEmail())) {
-            throw new IllegalStateException("Email already in use: " + dto.getEmail());
+            throw new BusinessException(ErrorType.LAWYER_EMAIL_IN_USE,
+                    "Bu e-posta adresi zaten kullanımda: " + dto.getEmail());
         }
 
         Lawyer entity = lawyerMapper.toEntity(dto);
@@ -37,7 +40,9 @@ public class LawyerServiceImpl implements LawyerService {
     @Transactional(readOnly = true)
     public ResponseLawyer getById(Long id) {
         Lawyer lawyer = lawyerRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Lawyer not found: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        ErrorType.LAWYER_NOT_FOUND,
+                        "Avukat bulunamadı: " + id));
         return lawyerMapper.toDto(lawyer);
     }
 
@@ -54,11 +59,14 @@ public class LawyerServiceImpl implements LawyerService {
     @Transactional
     public ResponseLawyer update(Long id, RequestLawyer dto) {
         Lawyer lawyer = lawyerRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Lawyer not found: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        ErrorType.LAWYER_NOT_FOUND,
+                        "Avukat bulunamadı: " + id));
 
         if (dto.getEmail() != null && !dto.getEmail().equals(lawyer.getEmail())
                 && lawyerRepository.existsByEmail(dto.getEmail())) {
-            throw new IllegalStateException("Email already in use: " + dto.getEmail());
+            throw new BusinessException(ErrorType.LAWYER_EMAIL_IN_USE,
+                    "Bu e-posta adresi zaten kullanımda: " + dto.getEmail());
         }
 
         applyUpdates(lawyer, dto);
@@ -70,7 +78,9 @@ public class LawyerServiceImpl implements LawyerService {
     @Transactional
     public void delete(Long id) {
         if (!lawyerRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Lawyer not found: " + id);
+            throw new ResourceNotFoundException(
+                    ErrorType.LAWYER_NOT_FOUND,
+                    "Avukat bulunamadı: " + id);
         }
         lawyerRepository.deleteById(id);
     }

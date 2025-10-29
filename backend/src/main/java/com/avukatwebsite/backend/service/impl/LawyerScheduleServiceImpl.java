@@ -4,6 +4,8 @@ import com.avukatwebsite.backend.dto.request.RequestLawyerSchedule;
 import com.avukatwebsite.backend.dto.response.ResponseLawyerSchedule;
 import com.avukatwebsite.backend.entity.Lawyer;
 import com.avukatwebsite.backend.entity.LawyerSchedule;
+import com.avukatwebsite.backend.exception.BusinessException;
+import com.avukatwebsite.backend.exception.ErrorType;
 import com.avukatwebsite.backend.exception.ResourceNotFoundException;
 import com.avukatwebsite.backend.mapper.LawyerScheduleMapper;
 import com.avukatwebsite.backend.repository.LawyerRepository;
@@ -34,7 +36,7 @@ public class LawyerScheduleServiceImpl implements LawyerScheduleService {
         entity.setLawyer(lawyer);
         entity.setAppointments(new ArrayList<>());
 
-        validateTimeRange(entity.getStartTime(), entity.getEndTime());
+        validateTimeRange(entity.getStartTime(), entity.getEndTime(), entity.isDayOff());
 
         LawyerSchedule saved = lawyerScheduleRepository.save(entity);
         return lawyerScheduleMapper.toDto(saved);
@@ -62,7 +64,9 @@ public class LawyerScheduleServiceImpl implements LawyerScheduleService {
     @Transactional
     public void delete(Long id) {
         if (!lawyerScheduleRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Lawyer schedule not found: " + id);
+            throw new ResourceNotFoundException(
+                    ErrorType.LAWYER_SCHEDULE_NOT_FOUND,
+                    "Çalışma takvimi bulunamadı: " + id);
         }
         lawyerScheduleRepository.deleteById(id);
     }
@@ -71,7 +75,9 @@ public class LawyerScheduleServiceImpl implements LawyerScheduleService {
     @Transactional
     public ResponseLawyerSchedule update(Long id, RequestLawyerSchedule dto) {
         LawyerSchedule schedule = lawyerScheduleRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Lawyer schedule not found: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        ErrorType.LAWYER_SCHEDULE_NOT_FOUND,
+                        "Çalışma takvimi bulunamadı: " + id));
 
         if (dto.getLawyerId() != null && !dto.getLawyerId().equals(schedule.getLawyer().getId())) {
             Lawyer lawyer = findLawyer(dto.getLawyerId());
@@ -89,7 +95,7 @@ public class LawyerScheduleServiceImpl implements LawyerScheduleService {
         }
         schedule.setDayOff(dto.isDayOff());
 
-        validateTimeRange(schedule.getStartTime(), schedule.getEndTime());
+        validateTimeRange(schedule.getStartTime(), schedule.getEndTime(), schedule.isDayOff());
 
         LawyerSchedule saved = lawyerScheduleRepository.save(schedule);
         return lawyerScheduleMapper.toDto(saved);
@@ -99,24 +105,32 @@ public class LawyerScheduleServiceImpl implements LawyerScheduleService {
     @Transactional(readOnly = true)
     public ResponseLawyerSchedule getById(Long id) {
         LawyerSchedule schedule = lawyerScheduleRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Lawyer schedule not found: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        ErrorType.LAWYER_SCHEDULE_NOT_FOUND,
+                        "Çalışma takvimi bulunamadı: " + id));
         return lawyerScheduleMapper.toDto(schedule);
     }
 
     private Lawyer findLawyer(Long lawyerId) {
         if (lawyerId == null) {
-            throw new IllegalArgumentException("lawyerId is required");
+            throw new BusinessException(ErrorType.GENERIC_BUSINESS_ERROR, "lawyerId alanı zorunludur");
         }
         return lawyerRepository.findById(lawyerId)
-                .orElseThrow(() -> new ResourceNotFoundException("Lawyer not found: " + lawyerId));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        ErrorType.LAWYER_NOT_FOUND,
+                        "Avukat bulunamadı: " + lawyerId));
     }
 
-    private void validateTimeRange(LocalTime start, LocalTime end) {
-        if (start == null || end == null) {
+    private void validateTimeRange(LocalTime start, LocalTime end, boolean dayOff) {
+        if (dayOff) {
             return;
         }
+        if (start == null || end == null) {
+            throw new BusinessException(ErrorType.LAWYER_SCHEDULE_INVALID_TIME_RANGE,
+                    "Tatil olmayan günlerde çalışma saatleri dolu olmalıdır");
+        }
         if (!start.isBefore(end)) {
-            throw new IllegalArgumentException("startTime must be before endTime");
+            throw new BusinessException(ErrorType.LAWYER_SCHEDULE_INVALID_TIME_RANGE);
         }
     }
 }
