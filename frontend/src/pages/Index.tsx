@@ -49,7 +49,7 @@ export default function Index() {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-gray-300 px-24 py-12 border-b-2 border-slate-100">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-gray-100 px-24 py-12 border-b-2 border-slate-100">
         <div className="col-span-4">
           <h1 className="text-4xl text-center text-gray-600">Online Randevu Nasıl Oluşturulur</h1>
         </div>
