@@ -7,8 +7,8 @@ export interface Lawyer {
 }
 
 export interface Experience {
-    id: number,
-    lawyerId: number,
+    id?: number,
+    lawyerId?: number,
     description: string,
     title: string
 }

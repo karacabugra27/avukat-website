@@ -69,8 +69,8 @@ export default function Index() {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-gray-100 px-24 py-12 border-b-2 border-slate-100">
-        <div className="col-span-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-gray-100 px-6 lg:px-24 py-12 border-b-2 border-slate-100">
+        <div className="col-span-1 md:col-span-2 lg:col-span-4">
           <h1 className="text-4xl text-center text-gray-600">Online Randevu Nasıl Oluşturulur</h1>
         </div>
         <div className="flex flex-col items-center justify-center gap-3 bg-white p-8 rounded-xl shadow-sm">
@@ -103,9 +103,9 @@ export default function Index() {
         </div>
       </div>
       {lawyers.length > 0 && (
-        <div className="px-24 py-12">
-          <h1 className="text-4xl font-semibold">Avukatlar</h1>
-          <div className="grid grid-cols-1 gap-y-6">
+        <div className="px-6 lg:px-24 py-12">
+          <h1 className="text-4xl">Avukatlar</h1>
+          <div className="grid grid-cols-1 gap-y-6 mt-6">
             {lawyers.map(lawyer => {
               return <LawyerCard lawyer={lawyer} key={lawyer.id} />
             })}
