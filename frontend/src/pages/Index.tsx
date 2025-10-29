@@ -1,13 +1,33 @@
-import { Check, UserRound, CalendarDays, DollarSign, Video } from "lucide-react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Check, Users, CalendarDays, DollarSign, Video } from "lucide-react";
+import LawyerCard from "../components/LawyerCard";
+import type { Lawyer } from "../types";
 
 export default function Index() {
+  const [lawyers, setLawyers] = useState<Lawyer[]>([]);
+
+  async function getLawyers() {
+    try {
+      const response = await axios.get('http://localhost:8080/api/lawyers');
+      if (response.status === 200) setLawyers(response.data);
+    }
+    catch (error: any) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getLawyers();
+  }, [])
+
   return (
     <>
       {/* Hero with bg image */}
       <div
         className="hero min-h-screen"
         style={{
-          backgroundImage: "url(/public/76-scaled.jpg)"
+          backgroundImage: "url(/76-scaled.jpg)"
         }}
       >
         <div className="hero-overlay bg-black/60"></div>
@@ -55,7 +75,7 @@ export default function Index() {
         </div>
         <div className="flex flex-col items-center justify-center gap-3 bg-white p-8 rounded-xl shadow-sm">
           <div className="bg-[var(--color-primary)]/20 text-[var(--color-primary)] rounded-xl p-4">
-            <UserRound />
+            <Users />
           </div>
           <h1 className="text-xl font-semibold text-gray-600">Avukatını Seç</h1>
           <p className="text-center text-lg text-gray-500">Sistemimizdeki avukatların çalışma ve uzmanlık alanlarını inceleyerek size en uygun olan avukatı seçebilirsiniz</p>
@@ -82,6 +102,16 @@ export default function Index() {
           <p className="text-center text-lg text-gray-500">Randevu saatinizde SMS yoluyla tarafınıza gelen link üzerinden sisteme giriş yaparak görüşmenizi gerçekleştirebilirsiniz</p>
         </div>
       </div>
+      {lawyers.length > 0 && (
+        <div className="px-24 py-12">
+          <h1 className="text-4xl font-semibold">Avukatlar</h1>
+          <div className="grid grid-cols-1 gap-y-6">
+            {lawyers.map(lawyer => {
+              return <LawyerCard lawyer={lawyer} key={lawyer.id} />
+            })}
+          </div>
+        </div>
+      )}
     </>
   );
 }
