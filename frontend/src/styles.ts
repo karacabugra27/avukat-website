@@ -1,6 +1,6 @@
 //button styles
-export const btnPrimary = "btn bg-[var(--color-primary)] hover:bg-[var(--color-primary)]/80 rounded-lg border-none text-white";
-export const btnSecondary = "btn bg-[var(--color-secondary)] hover:bg-[var(--color-secondary)]/80 rounded-lg border-none";
+export const btnPrimary = "btn bg-[var(--color-primary)] hover:scale-105 rounded-lg border-none text-white transition-all duration-300";
+export const btnSecondary = "btn bg-[var(--color-secondary)] hover:scale-105 rounded-lg border-none text-white transition-all duration-300";
 
 //link styles
 export const navLink = "hover:text-[var(--color-primary)] transition-all duration-200 text-slate-300"
