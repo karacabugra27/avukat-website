@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Check, Users, CalendarDays, DollarSign, Video } from "lucide-react";
 import LawyerCard from "../components/LawyerCard";
-import type { Lawyer } from "../types";
+import FaqCard from "../components/FaqCard";
+import type { Lawyer, Faq } from "../types";
 
 export default function Index() {
   const [lawyers, setLawyers] = useState<Lawyer[]>([]);
+  const [faqs, setFaqs] = useState<Faq[]>([]);
 
   async function getLawyers() {
     try {
@@ -17,8 +19,19 @@ export default function Index() {
     }
   }
 
+  async function getFaqs() {
+    try {
+      const response = await axios.get('http://localhost:8080/api/faq');
+      if (response.status === 200) setFaqs(response.data);
+    }
+    catch (error: any) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     getLawyers();
+    getFaqs();
   }, [])
 
   return (
@@ -108,6 +121,16 @@ export default function Index() {
           <div className="grid grid-cols-1 gap-y-6 mt-6">
             {lawyers.map(lawyer => {
               return <LawyerCard lawyer={lawyer} key={lawyer.id} />
+            })}
+          </div>
+        </div>
+      )}
+      {faqs.length > 0 && (
+        <div className="px-6 lg:px-24 py-12 bg-gray-100">
+          <h1 className="text-4xl">Sık Sorulanlar</h1>
+          <div className="grid grid-cols-1 gap-y-3 mt-6">
+            {faqs.map(faq => {
+              return <FaqCard faq={faq} key={faq.id}/>
             })}
           </div>
         </div>
