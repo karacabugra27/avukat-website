@@ -6,7 +6,7 @@ export default function IndexLayout() {
   return(
     <>
       <Navbar />
-      <main className="p-6 lg:p-24">
+      <main>
         <Outlet />
       </main>
       <Footer />

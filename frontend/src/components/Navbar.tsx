@@ -1,45 +1,92 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { navLink, btnSecondary } from "../styles";
+import { Menu, X } from "lucide-react";
+
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="navbar bg-base-100 shadow-sm">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
-          </div>
-          <ul
-            tabIndex={-1}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-            <li><a>Item 1</a></li>
-            <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li><a>Submenu 1</a></li>
-                <li><a>Submenu 2</a></li>
-              </ul>
-            </li>
-            <li><a>Item 3</a></li>
-          </ul>
+    <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center bg-black/60 px-12 py-8">
+      {/* Logo */}
+      <div>
+        <h1 className="text-2xl md:text-3xl font-semibold text-white">
+          Hukuk Bürosu
+        </h1>
+      </div>
+
+      {/* Menü - Masaüstü */}
+      <ul className="hidden md:flex items-center gap-6 text-lg">
+        <li><Link to="/" className={navLink}>Avukatlar</Link></li>
+        <li><Link to="/" className={navLink}>Kurumsal Danışmanlık</Link></li>
+        <li><Link to="/" className={navLink}>Sık Sorulanlar</Link></li>
+        <li><Link to="/" className={navLink}>Blog</Link></li>
+        <li><button className={btnSecondary}>Giriş</button></li>
+      </ul>
+
+      {/* Hamburger Menü - Mobil */}
+      <button
+        onClick={() => setIsOpen(true)}
+        className="md:hidden text-white text-3xl focus:outline-none"
+      >
+        <Menu />
+      </button>
+
+      {/* Drawer (Mobil Menü) */}
+      <div
+        className={`fixed top-0 right-0 h-full w-64 bg-white backdrop-blur-md shadow-lg transform transition-transform duration-300 z-50
+          ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+      >
+        {/* Drawer Header */}
+        <div className="flex justify-between items-center p-6 border-b border-gray-700">
+          <h2 className="text-xl font-semibold">Menü</h2>
+          <button onClick={() => setIsOpen(false)} className="text-3xl">
+            <X />
+          </button>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
-      </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li><a>Item 1</a></li>
+
+        {/* Drawer İçeriği */}
+        <ul className="flex flex-col gap-6 p-6 text-lg">
           <li>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2">
-                <li><a>Submenu 1</a></li>
-                <li><a>Submenu 2</a></li>
-              </ul>
-            </details>
+            <Link to="/" className={navLink} onClick={() => setIsOpen(false)}>
+              Avukatlar
+            </Link>
           </li>
-          <li><a>Item 3</a></li>
+          <li>
+            <Link to="/" className={navLink} onClick={() => setIsOpen(false)}>
+              Kurumsal Danışmanlık
+            </Link>
+          </li>
+          <li>
+            <Link to="/" className={navLink} onClick={() => setIsOpen(false)}>
+              Sık Sorulanlar
+            </Link>
+          </li>
+          <li>
+            <Link to="/" className={navLink} onClick={() => setIsOpen(false)}>
+              Blog
+            </Link>
+          </li>
         </ul>
+
+        {/* Drawer Butonu */}
+        <div className="p-6">
+          <button
+            className={`${btnSecondary} w-full`}
+            onClick={() => setIsOpen(false)}
+          >
+            Giriş
+          </button>
+        </div>
       </div>
-      <div className="navbar-end">
-        <a className="btn">Button</a>
-      </div>
-    </div>
+
+      {/* Drawer Arkası (Backdrop) */}
+      {isOpen && (
+        <div
+          onClick={() => setIsOpen(false)}
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+        ></div>
+      )}
+    </nav>
   );
 }
