@@ -3,9 +3,12 @@ package com.avukatwebsite.backend.controller;
 import com.avukatwebsite.backend.dto.request.RequestLawyer;
 import com.avukatwebsite.backend.dto.response.ResponseLawyer;
 import com.avukatwebsite.backend.service.LawyerService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,17 +16,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/lawyers")
 @RequiredArgsConstructor
+@Validated
 public class LawyerController {
     private final LawyerService lawyerService;
 
     @PostMapping
-    public ResponseEntity<ResponseLawyer> create(@RequestBody RequestLawyer request) {
+    public ResponseEntity<ResponseLawyer> create(@Valid @RequestBody RequestLawyer request) {
         ResponseLawyer createdLawyer = lawyerService.create(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdLawyer);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseLawyer> getById(@PathVariable Long id) {
+    public ResponseEntity<ResponseLawyer> getById(@Positive @PathVariable Long id) {
         return ResponseEntity.ok(lawyerService.getById(id));
     }
 
@@ -33,12 +37,12 @@ public class LawyerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ResponseLawyer> update(@PathVariable Long id, @RequestBody RequestLawyer request) {
+    public ResponseEntity<ResponseLawyer> update(@Positive @PathVariable Long id, @Valid @RequestBody RequestLawyer request) {
         return ResponseEntity.ok(lawyerService.update(id, request));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@Positive @PathVariable Long id) {
         lawyerService.delete(id);
         return ResponseEntity.noContent().build();
     }

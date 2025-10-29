@@ -1,5 +1,6 @@
 package com.avukatwebsite.backend.dto.request;
 
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,12 +14,18 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class RequestMembership {
 
+    @NotNull
     private Long lawyerId;
 
+    @NotBlank
     private String name;
 
+    @NotNull
+    @PastOrPresent
     private LocalDate startDate;
 
+    @NotNull
+    @PastOrPresent
     private LocalDate endDate;
 
 }
