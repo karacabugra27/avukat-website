@@ -26,7 +26,7 @@ public class Lawyer {
     @Column(nullable = false)
     private String lastName;
 
-    @Column(nullable = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)

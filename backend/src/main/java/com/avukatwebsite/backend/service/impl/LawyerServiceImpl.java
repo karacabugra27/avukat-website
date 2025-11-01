@@ -3,6 +3,7 @@ package com.avukatwebsite.backend.service.impl;
 import com.avukatwebsite.backend.config.TraceIdFilter;
 import com.avukatwebsite.backend.dto.request.RequestLawyer;
 import com.avukatwebsite.backend.dto.response.ResponseLawyer;
+import com.avukatwebsite.backend.dto.response.ResponseLawyerWithExperiences;
 import com.avukatwebsite.backend.entity.Lawyer;
 import com.avukatwebsite.backend.exception.BusinessException;
 import com.avukatwebsite.backend.exception.ErrorType;
@@ -78,6 +79,16 @@ public class LawyerServiceImpl implements LawyerService {
         Lawyer saved = lawyerRepository.save(lawyer);
         log.info("[traceId={}] Avukat güncellendi id={}", traceId(), id);
         return lawyerMapper.toDto(saved);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ResponseLawyerWithExperiences getLawyerWithExperiencesById(Long id) {
+        Lawyer lawyer = lawyerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        ErrorType.LAWYER_NOT_FOUND,
+                        "Avukat bulunamadı: " + id));
+        return lawyerMapper.toExperienceDto(lawyer);
     }
 
     @Override

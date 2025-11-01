@@ -1,5 +1,6 @@
 package com.avukatwebsite.backend.dto.request;
 
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,8 +25,6 @@ public class RequestMembership {
     @PastOrPresent
     private LocalDate startDate;
 
-    @NotNull
-    @PastOrPresent
     private LocalDate endDate;
 
 }

@@ -2,6 +2,7 @@ package com.avukatwebsite.backend.controller;
 
 import com.avukatwebsite.backend.dto.request.RequestLawyer;
 import com.avukatwebsite.backend.dto.response.ResponseLawyer;
+import com.avukatwebsite.backend.dto.response.ResponseLawyerWithExperiences;
 import com.avukatwebsite.backend.service.LawyerService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
@@ -45,5 +46,10 @@ public class LawyerController {
     public ResponseEntity<Void> delete(@Positive @PathVariable Long id) {
         lawyerService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/experiences/{id}")
+    public ResponseEntity<ResponseLawyerWithExperiences> getLawyerExperiencesById(@PathVariable Long id){
+        return ResponseEntity.ok(lawyerService.getLawyerWithExperiencesById(id));
     }
 }
