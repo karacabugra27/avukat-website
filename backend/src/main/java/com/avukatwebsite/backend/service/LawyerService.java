@@ -1,13 +1,14 @@
 package com.avukatwebsite.backend.service;
 
-import com.avukatwebsite.backend.dto.request.RequestLawyer;
+import com.avukatwebsite.backend.dto.request.AdminCreateLawyerRequest;
+import com.avukatwebsite.backend.dto.request.UpdateOwnProfileRequest;
 import com.avukatwebsite.backend.dto.response.ResponseLawyer;
 import com.avukatwebsite.backend.dto.response.ResponseLawyerWithExperiences;
 
 import java.util.List;
 
 public interface LawyerService {
-    ResponseLawyer create(RequestLawyer dto);
+    ResponseLawyer create(AdminCreateLawyerRequest request);
 
     ResponseLawyer getById(Long id);
 
@@ -15,7 +16,13 @@ public interface LawyerService {
 
     void delete(Long id);
 
-    ResponseLawyer update(Long id, RequestLawyer dto);
-
     ResponseLawyerWithExperiences getLawyerWithExperiencesById(Long id);
+
+    ResponseLawyer updateOwnProfile(String email, UpdateOwnProfileRequest request);
+
+    void changeOwnPassword(String email, String currentPassword, String newPassword);
+
+    void updatePassword(Long lawyerId, String newPassword);
+
+    String resetPassword(Long lawyerId);
 }

@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -87,6 +89,30 @@ public class GlobalExceptionHandler {
         );
 
         return ResponseEntity.status(ErrorType.GENERIC_BUSINESS_ERROR.getHttpStatus()).body(response);
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<ErrorResponse> handleBadCredentials(BadCredentialsException exception,
+                                                              HttpServletRequest request) {
+        ErrorResponse response = ErrorResponse.from(
+                ErrorType.AUTH_BAD_CREDENTIALS,
+                exception.getMessage(),
+                request.getRequestURI(),
+                currentTraceId()
+        );
+        return ResponseEntity.status(ErrorType.AUTH_BAD_CREDENTIALS.getHttpStatus()).body(response);
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ErrorResponse> handleAccessDenied(AccessDeniedException exception,
+                                                            HttpServletRequest request) {
+        ErrorResponse response = ErrorResponse.from(
+                ErrorType.AUTH_FORBIDDEN,
+                exception.getMessage(),
+                request.getRequestURI(),
+                currentTraceId()
+        );
+        return ResponseEntity.status(ErrorType.AUTH_FORBIDDEN.getHttpStatus()).body(response);
     }
 
     @ExceptionHandler(Exception.class)
