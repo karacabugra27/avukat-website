@@ -1,55 +1,52 @@
+import { footerLink } from "../styles";
+import { Instagram, Twitter, Facebook, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
-import { linkSecondary } from "../styles";
-import { MapPin, Phone, Mail, Instagram, Twitter, Youtube, Facebook } from "lucide-react";
+import { HashLink } from "react-router-hash-link";
 
 export default function Footer() {
   return (
     <>
-      <footer className="footer sm:footer-horizontal bg-[#181d36] text-white p-10">
-        <aside>
-          <svg
-            width="50"
-            height="50"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-            fillRule="evenodd"
-            clipRule="evenodd"
-            className="fill-current">
-            <path
-              d="M22.672 15.226l-2.432.811.841 2.515c.33 1.019-.209 2.127-1.23 2.456-1.15.325-2.148-.321-2.463-1.226l-.84-2.518-5.013 1.677.84 2.517c.391 1.203-.434 2.542-1.831 2.542-.88 0-1.601-.564-1.86-1.314l-.842-2.516-2.431.809c-1.135.328-2.145-.317-2.463-1.229-.329-1.018.211-2.127 1.231-2.456l2.432-.809-1.621-4.823-2.432.808c-1.355.384-2.558-.59-2.558-1.839 0-.817.509-1.582 1.327-1.846l2.433-.809-.842-2.515c-.33-1.02.211-2.129 1.232-2.458 1.02-.329 2.13.209 2.461 1.229l.842 2.515 5.011-1.677-.839-2.517c-.403-1.238.484-2.553 1.843-2.553.819 0 1.585.509 1.85 1.326l.841 2.517 2.431-.81c1.02-.33 2.131.211 2.461 1.229.332 1.018-.21 2.126-1.23 2.456l-2.433.809 1.622 4.823 2.433-.809c1.242-.401 2.557.484 2.557 1.838 0 .819-.51 1.583-1.328 1.847m-8.992-6.428l-5.01 1.675 1.619 4.828 5.011-1.674-1.62-4.829z"></path>
-          </svg>
-          <p>
-            Hukuk Bürosu
-            <br />
-            Providing reliable tech since 1992
-          </p>
-          <div className="flex justify-start gap-2">
-            <div className="p-2 text-white rounded-full hover:bg-[var(--color-secondary)] hover:text-black hover:cursor-pointer transition-all duration-200"><Instagram strokeWidth={1.50} /></div>
-            <div className="p-2 text-white rounded-full hover:bg-[var(--color-secondary)] hover:text-black hover:cursor-pointer transition-all duration-200"><Twitter strokeWidth={1.50} /></div>
-            <div className="p-2 text-white rounded-full hover:bg-[var(--color-secondary)] hover:text-black hover:cursor-pointer transition-all duration-200"><Youtube strokeWidth={1.50} /></div>
-            <div className="p-2 text-white rounded-full hover:bg-[var(--color-secondary)] hover:text-black hover:cursor-pointer transition-all duration-200"><Facebook strokeWidth={1.50} /></div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 p-6 lg:p-12 gap-6 bg-gray-900 text-white">
+        <div className="col-span-1">
+          <h1 className="text-3xl">Hukuk Bürosu</h1>
+          <p className="text-sm mt-2 text-gray-400">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit obcaecati tenetur, fugiat voluptatibus consequatur facere suscipit architecto amet.</p>
+        </div>
+        <div className="col-span-1">
+          <h1 className="text-xl inline-block border-b-1 border-primary">Bağlantılar</h1>
+          <div className="mt-4">
+            <ul className="flex flex-col gap-2">
+              <li><HashLink to={'/#index'} className={footerLink} >Ana Sayfa</HashLink></li>
+              <li><HashLink smooth to={'/#avukatlar'} className={footerLink} >Avukatlar</HashLink></li>
+              <li><Link to={'/'} className={footerLink} >Randevu Oluştur</Link></li>
+              <li><HashLink smooth to={'/#sss'} className={footerLink} >Sık Sorulanlar</HashLink></li>
+              <li><HashLink to={'/iletisim/#form'} className={footerLink} >İletişim</HashLink></li>
+            </ul>
           </div>
-        </aside>
-        <nav>
-          <h6 className="footer-title border-b-1 border-b-[var(--color-primary)] pb-1">SAYFALAR</h6>
-          <Link to={'/'} className={linkSecondary}>Anasayfa</Link>
-          <Link to={'/'} className={linkSecondary}>Çalışma Alanlarımız</Link>
-          <Link to={'/'} className={linkSecondary}>Makaleler</Link>
-          <Link to={'/'} className={linkSecondary}>Blog</Link>
-        </nav>
-        <nav>
-          <h6 className="footer-title border-b-1 border-b-[var(--color-primary)] pb-1">KURUMSAL</h6>
-          <Link to={'/'} className={linkSecondary}>Hakkımızda</Link>
-          <Link to={'/'} className={linkSecondary}>İletişim</Link>
-        </nav>
-        <nav>
-          <h6 className="footer-title border-b-1 border-b-[var(--color-primary)] pb-1">İLETİŞİM</h6>
-          <div className="flex items-center"><MapPin size={20} className="inline-block mr-2" />İstanbul, Türkiye</div>
-          <div className="flex items-center"><Phone size={20} className="inline-block mr-2" />0555 555 55 55</div>
-          <div className="flex items-center"><Mail size={20} className="inline-block mr-2" />demo@email.com</div>
-        </nav>
-      </footer>
-      <footer className="footer sm:footer-horizontal footer-center bg-[#181d36] text-white p-4 border-t border-t-gray-700">
+        </div>
+        <div className="col-span-1">
+          <h1 className="text-xl inline-block border-b-1 border-primary">Sosyal Medya</h1>
+          <div className="mt-4">
+            <ul className="flex flex-col gap-2">
+              <li><Link to={'https://facebook.com'} target="_blank" className={footerLink} ><Facebook width={20} strokeWidth={1.25} className="inline-block mr-2" />Facebook</Link></li>
+              <li><Link to={'https://instagram.com'} target="_blank" className={footerLink} ><Instagram width={20} strokeWidth={1.25} className="inline-block mr-2" />Instagram</Link></li>
+              <li><Link to={'https://x.com'} target="_blank" className={footerLink} ><Twitter width={20} strokeWidth={1.25} className="inline-block mr-2" />Twitter</Link></li>
+              <li><Link to={'https://linkedin.com'} target="_blank" className={footerLink} ><Linkedin width={20} strokeWidth={1.25} className="inline-block mr-2" />LinkedIn</Link></li>
+            </ul>
+          </div>
+        </div>
+        <div className="col-span-1">
+          <h1 className="text-xl inline-block border-b-1 border-primary">Bize Ulaşın</h1>
+          <div className="mt-4">
+            <ul className="flex flex-col gap-2 text-gray-400">
+              <li><span className="font-bold text-gray-300">Telefon: </span>123123123</li>
+              <li><span className="font-bold text-gray-300">E-Posta: </span>demo@email.com</li>
+              <li><span className="font-bold text-gray-300">Whatsapp: </span>123123123</li>
+              <li><span className="font-bold text-gray-300">Adress: </span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem ipsam quia sapiente.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <footer className="footer sm:footer-horizontal footer-center bg-gray-900 text-gray-400 p-4 border-t border-t-gray-700">
         <aside>
           <p>Copyright © {new Date().getFullYear()} - All right reserved by Hukuk Bürosu</p>
         </aside>
