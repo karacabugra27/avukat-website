@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
-import { navLink, btnSecondary } from "../styles";
+import { navLink, btnSecondary } from "../../styles";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Check, Users, CalendarDays, DollarSign, Video, ArrowUp } from "lucide-react";
-import LawyerCard from "../components/LawyerCard";
-import FaqCard from "../components/FaqCard";
+import LawyerCard from "../components/site/LawyerCard";
+import FaqCard from "../components/site/FaqCard";
 import type { Lawyer, Faq } from "../types";
 
 export default function Index() {
