@@ -10,6 +10,10 @@ import java.util.List;
 
 
 @Entity
+@Table(
+    name = "lawyer",
+    uniqueConstraints = @UniqueConstraint(columnNames = "email")
+)
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,17 +24,27 @@ public class Lawyer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column
     private String firstName;
 
-    @Column(nullable = false)
+    @Column
     private String lastName;
 
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column
     private String bio;
+
+    @Column(name = "profile_image_url")
+    private String profileImageUrl;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
 
     @OneToMany(mappedBy = "lawyer")
     private List<Experience> experiences;
