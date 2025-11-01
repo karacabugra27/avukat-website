@@ -5,6 +5,8 @@ import com.avukatwebsite.backend.dto.request.UpdateOwnProfileRequest;
 import com.avukatwebsite.backend.dto.response.ResponseLawyer;
 import com.avukatwebsite.backend.dto.response.ResponseLawyerWithExperiences;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 
 public interface LawyerService {
@@ -18,6 +20,8 @@ public interface LawyerService {
 
     ResponseLawyerWithExperiences getLawyerWithExperiencesById(Long id);
 
+    List<ResponseLawyerWithExperiences> getLawyerWithExperiencesAll();
+
     ResponseLawyer updateOwnProfile(String email, UpdateOwnProfileRequest request);
 
     void changeOwnPassword(String email, String currentPassword, String newPassword);
@@ -25,4 +29,8 @@ public interface LawyerService {
     void updatePassword(Long lawyerId, String newPassword);
 
     String resetPassword(Long lawyerId);
+
+    ResponseLawyer updateProfileImage(String email, MultipartFile file);
+
+    void deleteProfileImage(String email);
 }

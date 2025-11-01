@@ -21,5 +21,7 @@ public class ResponseLawyer {
 
     private String bio;
 
+    private String profileImageUrl;
+
 
 }

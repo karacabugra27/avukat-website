@@ -29,7 +29,12 @@ public class LawyerController {
     }
 
     @GetMapping("/experiences/{id}")
-    public ResponseEntity<ResponseLawyerWithExperiences> getLawyerExperiencesById(@PathVariable Long id){
+    public ResponseEntity<ResponseLawyerWithExperiences> getLawyerExperiencesById(@PathVariable Long id) {
         return ResponseEntity.ok(lawyerService.getLawyerWithExperiencesById(id));
+    }
+
+    @GetMapping("/experiences")
+    public ResponseEntity<List<ResponseLawyerWithExperiences>> getLawyerExperiencesAll() {
+        return ResponseEntity.ok(lawyerService.getLawyerWithExperiencesAll());
     }
 }

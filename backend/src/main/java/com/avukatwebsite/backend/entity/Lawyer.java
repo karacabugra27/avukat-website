@@ -36,6 +36,9 @@ public class Lawyer {
     @Column
     private String bio;
 
+    @Column(name = "profile_image_url")
+    private String profileImageUrl;
+
     @Column(nullable = false)
     private String password;
 
