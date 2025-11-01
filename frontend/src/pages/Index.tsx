@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Check, Users, CalendarDays, DollarSign, Video } from "lucide-react";
+import { Check, Users, CalendarDays, DollarSign, Video, ArrowUp } from "lucide-react";
 import LawyerCard from "../components/LawyerCard";
 import FaqCard from "../components/FaqCard";
 import type { Lawyer, Faq } from "../types";
@@ -8,6 +8,7 @@ import type { Lawyer, Faq } from "../types";
 export default function Index() {
   const [lawyers, setLawyers] = useState<Lawyer[]>([]);
   const [faqs, setFaqs] = useState<Faq[]>([]);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   async function getLawyers() {
     try {
@@ -33,6 +34,21 @@ export default function Index() {
     getLawyers();
     getFaqs();
   }, [])
+
+  // Scroll izleme
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) setShowScrollTop(true);
+      else setShowScrollTop(false);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Yukarı dönme fonksiyonu
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <>
@@ -116,7 +132,7 @@ export default function Index() {
         </div>
       </div>
       {lawyers.length > 0 && (
-        <div className="px-6 lg:px-24 py-12">
+        <div id="avukatlar" className="px-6 lg:px-24 py-12">
           <h1 className="text-4xl">Avukatlar</h1>
           <div className="grid grid-cols-1 gap-y-6 mt-6">
             {lawyers.map(lawyer => {
@@ -126,14 +142,24 @@ export default function Index() {
         </div>
       )}
       {faqs.length > 0 && (
-        <div className="px-6 lg:px-24 py-12 bg-gray-100">
+        <div id="sss" className="px-6 lg:px-24 py-12 bg-gray-100">
           <h1 className="text-4xl">Sık Sorulanlar</h1>
           <div className="grid grid-cols-1 gap-y-3 mt-6">
             {faqs.map(faq => {
-              return <FaqCard faq={faq} key={faq.id}/>
+              return <FaqCard faq={faq} key={faq.id} />
             })}
           </div>
         </div>
+      )}
+
+      {/* Scroll to top butonu */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 bg-[var(--color-primary)] text-white p-3 rounded-full shadow-lg hover:cursor-pointer hover:bg-[var(--color-primary)]/80 transition-all duration-300 z-50"
+        >
+          <ArrowUp size={24} />
+        </button>
       )}
     </>
   );
