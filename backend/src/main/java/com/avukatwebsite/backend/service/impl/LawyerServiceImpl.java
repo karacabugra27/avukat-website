@@ -35,6 +35,7 @@ public class LawyerServiceImpl implements LawyerService {
     private static final String TEMP_PASSWORD_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
     private static final int TEMP_PASSWORD_LENGTH = 8;
     private static final SecureRandom RANDOM = new SecureRandom();
+    private static final String PROFILE_IMAGE_DIRECTORY = "lawyers/profile-images";
 
     private final LawyerRepository lawyerRepository;
     private final LawyerMapper lawyerMapper;
