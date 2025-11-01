@@ -5,16 +5,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ResponseExperience {
+public class ResponseLawyerWithExperiences {
 
     private Long id;
 
-    private String title;
+    private String firstName;
 
-    private String description;
+    private String lastName;
+
+    private String email;
+
+    private String bio;
+
+    private List<ResponseExperience> experiences;
 
 }

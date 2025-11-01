@@ -21,6 +21,7 @@ public class LawyerSchedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     private DayOfWeek dayOfWeek;
 
     @Column(nullable = false)

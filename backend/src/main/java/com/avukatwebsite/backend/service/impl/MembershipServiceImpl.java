@@ -109,8 +109,11 @@ public class MembershipServiceImpl implements MembershipService {
     }
 
     private void validateDateRange(LocalDate startDate, LocalDate endDate) {
-        if (startDate == null || endDate == null) {
+        if (endDate == null) {
             return;
+        }
+        if (startDate == null) {
+            throw new BusinessException(ErrorType.GENERIC_BUSINESS_ERROR, "startDate alanı zorunludur");
         }
         if (endDate.isBefore(startDate)) {
             throw new BusinessException(ErrorType.MEMBERSHIP_INVALID_DATE_RANGE);

@@ -29,12 +29,12 @@ public class ExperienceController {
     }
 
     @GetMapping("/title/{title}")
-    public ResponseEntity<List<ResponseExperience>> getExperienceByTitle(@Positive @PathVariable String title) {
+    public ResponseEntity<List<ResponseExperience>> getExperienceByTitle(@PathVariable String title) {
         return ResponseEntity.ok(experienceService.getExperienceByTitle(title));
     }
 
     @GetMapping("/lawyer/{lawyerId}")
-    public ResponseEntity<List<ResponseExperience>> getExperienceByLawyerId(@Positive @PathVariable Long lawyerId) {
+    public ResponseEntity<List<ResponseExperience>> getExperienceByLawyerId(@PathVariable Long lawyerId) {
         return ResponseEntity.ok(experienceService.getExperienceByLawyerId(lawyerId));
     }
 

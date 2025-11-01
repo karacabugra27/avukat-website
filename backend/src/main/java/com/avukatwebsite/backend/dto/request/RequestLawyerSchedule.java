@@ -1,6 +1,6 @@
 package com.avukatwebsite.backend.dto.request;
 
-import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,10 +22,10 @@ public class RequestLawyerSchedule {
     @NotNull
     private DayOfWeek dayOfWeek;
 
-    @NotNull
+    @Nullable
     private LocalTime startTime;
 
-    @NotNull
+    @Nullable
     private LocalTime endTime;
 
     private boolean dayOff;
