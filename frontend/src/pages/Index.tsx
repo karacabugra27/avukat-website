@@ -9,6 +9,7 @@ export default function Index() {
   const [lawyers, setLawyers] = useState<Lawyer[]>([]);
   const [faqs, setFaqs] = useState<Faq[]>([]);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   async function getLawyers() {
     try {
@@ -37,15 +38,24 @@ export default function Index() {
 
   // Scroll izleme
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 300) setShowScrollTop(true);
-      else setShowScrollTop(false);
+    const updateScrollState = () => {
+      const scrollTop = window.scrollY;
+      const maxScrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = maxScrollable > 0 ? Math.min((scrollTop / maxScrollable) * 100, 100) : 0;
+
+      setScrollProgress(progress);
+      setShowScrollTop(scrollTop > 300);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    updateScrollState();
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+    window.addEventListener("resize", updateScrollState);
+    return () => {
+      window.removeEventListener("scroll", updateScrollState);
+      window.removeEventListener("resize", updateScrollState);
+    };
   }, []);
 
-  // Yukarı dönme fonksiyonu
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -155,12 +165,20 @@ export default function Index() {
 
       {/* Scroll to top butonu */}
       {showScrollTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 bg-[var(--color-primary)] text-white p-3 rounded-full shadow-lg hover:cursor-pointer hover:bg-[var(--color-primary)]/80 transition-all duration-300 z-50"
+        <div
+          className="fixed bottom-6 right-6 p-[3px] rounded-full shadow-lg transition-all duration-300 z-50"
+          style={{
+            background: `conic-gradient(var(--color-progress) ${scrollProgress}%, rgba(226, 232, 240, 0.6) ${scrollProgress}% 100%)`
+          }}
         >
-          <ArrowUp size={24} />
-        </button>
+          <button
+            onClick={scrollToTop}
+            className="flex items-center justify-center bg-[var(--color-primary)] text-white p-3 rounded-full hover:cursor-pointer transition-colors duration-300"
+            aria-label="Sayfanın başına dön"
+          >
+            <ArrowUp size={22} />
+          </button>
+        </div>
       )}
     </>
   );
