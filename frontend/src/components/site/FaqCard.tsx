@@ -1,4 +1,4 @@
-import type { Faq } from "../types";
+import type { Faq } from "../../types";
 import { MessageCircleQuestionMark } from "lucide-react";
 
 export default function FaqCard({ faq, ...props }: { faq: Faq }) {
