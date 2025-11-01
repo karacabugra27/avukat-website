@@ -4,9 +4,11 @@ import Sidebar from "../components/admin/Sidebar";
 export default function AdminLayout() {
   return(
     <>
-      <Sidebar />
-      <main>
-        <Outlet />
+      <main className="flex">
+        <Sidebar />
+        <div className="p-12">
+          <Outlet />
+        </div>
       </main>
     </>
   );
