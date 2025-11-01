@@ -143,7 +143,7 @@ export default function Index() {
         </div>
       )}
       {faqs.length > 0 && (
-        <div id="sss" className="px-6 lg:px-24 py-12 bg-gray-100">
+        <div id="sss" style={{backgroundImage: "url(/low-poly-grid-haikei.png)", backgroundRepeat: "repeat"}} className="px-6 lg:px-24 py-12 bg-gray-100">
           <h1 className="text-4xl">Sık Sorulanlar</h1>
           <div className="grid grid-cols-1 gap-y-3 mt-6">
             {faqs.map(faq => {
