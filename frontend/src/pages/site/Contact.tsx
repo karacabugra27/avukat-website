@@ -2,7 +2,7 @@ import { Send, User, AtSign, Phone, Tag, MessageCircle, Info, MapPin, Share2 } f
 import { Instagram, Facebook, Twitter, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import { btnPrimary } from "../styles";
+import { btnPrimary } from "../../styles";
 
 export default function Contact() {
   const inputStyles = "px-3 py-2 text-sm text-black w-full border-1 border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary";

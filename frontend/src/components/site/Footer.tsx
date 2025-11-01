@@ -1,4 +1,4 @@
-import { footerLink } from "../styles";
+import { footerLink } from "../../styles";
 import { Instagram, Twitter, Facebook, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";

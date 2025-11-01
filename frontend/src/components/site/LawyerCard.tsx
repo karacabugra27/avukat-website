@@ -1,10 +1,10 @@
-import type { Lawyer } from "../types";
+import type { Lawyer } from "../../types";
 import { UserRound } from "lucide-react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import { btnPrimary, btnSecondary } from "../styles";
-import type { Experience } from "../types";
+import { btnPrimary, btnSecondary } from "../../styles";
+import type { Experience } from "../../types";
 
 export default function LawyerCard({ lawyer, ...props }: { lawyer: Lawyer }) {
   const [experiences, setExperiences] = useState<Experience[]>([]);
