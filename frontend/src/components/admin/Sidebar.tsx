@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { LayoutDashboard, UserRound, MessageCircleQuestionMark, Mail, CircleUserRound, Settings, LogOut } from "lucide-react";
+import { LayoutDashboard, UserRound, MessageCircleQuestionMark, Mail, CircleUserRound, Settings, LogOut, CalendarDays } from "lucide-react";
 
 export default function Sidebar() {
   return (
@@ -10,38 +10,43 @@ export default function Sidebar() {
       <nav className="flex flex-col space-y-2">
         <Link to="/admin"
           className="flex items-center p-3 rounded-lg hover:bg-gray-800 transition">
-          <LayoutDashboard />
+          <LayoutDashboard width={20} strokeWidth={1.5} />
           <span className="ml-3">Dashboard</span>
         </Link>
         <Link to="/admin"
           className="flex items-center p-3 rounded-lg hover:bg-gray-800 transition">
-          <UserRound />
+          <UserRound width={20} strokeWidth={1.5} />
           <span className="ml-3">Avukatlar</span>
         </Link>
         <Link to="/admin"
           className="flex items-center p-3 rounded-lg hover:bg-gray-800 transition">
-          <MessageCircleQuestionMark />
+          <CalendarDays width={20} strokeWidth={1.5} />
+          <span className="ml-3">Randevular</span>
+        </Link>
+        <Link to="/admin"
+          className="flex items-center p-3 rounded-lg hover:bg-gray-800 transition">
+          <MessageCircleQuestionMark width={20} strokeWidth={1.5} />
           <span className="ml-3">SSS</span>
         </Link>
         <Link to="/admin"
           className="flex items-center p-3 rounded-lg hover:bg-gray-800 transition">
-          <Mail />
+          <Mail width={20} strokeWidth={1.5} />
           <span className="ml-3">Mesajlar</span>
         </Link>
         <Link to="/admin"
           className="flex items-center p-3 rounded-lg hover:bg-gray-800 transition">
-          <CircleUserRound />
+          <CircleUserRound width={20} strokeWidth={1.5} />
           <span className="ml-3">Kullanıcılar</span>
         </Link>
         <Link to="/admin"
           className="flex items-center p-3 rounded-lg hover:bg-gray-800 transition">
-          <Settings />
+          <Settings width={20} strokeWidth={1.5} />
           <span className="ml-3">Ayarlar</span>
         </Link>
         <div className="border-t border-gray-600 pt-2">
           <Link to="/admin"
             className="flex items-center p-3 rounded-lg hover:bg-gray-800 transition">
-            <LogOut />
+            <LogOut width={20} strokeWidth={1.5} />
             <span className="ml-3">Çıkış</span>
           </Link>
         </div>
