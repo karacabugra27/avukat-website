@@ -54,6 +54,7 @@ export default function Index() {
     <>
       {/* Hero with bg image */}
       <div
+        id="index"
         className="hero min-h-screen"
         style={{
           backgroundImage: "url(/76-scaled.jpg)"

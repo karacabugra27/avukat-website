@@ -18,10 +18,11 @@ export default function Navbar() {
 
       {/* Menü - Masaüstü */}
       <ul className="hidden md:flex items-center gap-6 text-lg">
+        <li><HashLink to="/#index" className={navLink}>Ana Sayfa</HashLink></li>
         <li><HashLink smooth to="/#avukatlar" className={navLink}>Avukatlar</HashLink></li>
-        <li><Link to="/" className={navLink}>Randevu</Link></li>
+        <li><Link to="/" className={navLink}>Randevu Oluştur</Link></li>
         <li><HashLink smooth to="/#sss" className={navLink}>Sık Sorulanlar</HashLink></li>
-        <li><Link to="/" className={navLink}>İletişim</Link></li>
+        <li><HashLink to="/iletisim/#form" className={navLink}>İletişim</HashLink></li>
         <li><button className={btnSecondary}>Giriş</button></li>
       </ul>
 
@@ -49,24 +50,29 @@ export default function Navbar() {
         {/* Drawer İçeriği */}
         <ul className="flex flex-col gap-6 p-6 text-lg">
           <li>
-            <Link to="/" className={navLink} onClick={() => setIsOpen(false)}>
+            <HashLink to="/#index" className="text-black" onClick={() => setIsOpen(false)}>
+              Ana Sayfa
+            </HashLink>
+          </li>
+          <li>
+            <HashLink smooth to="/#avukatlar" className="text-black" onClick={() => setIsOpen(false)}>
               Avukatlar
+            </HashLink>
+          </li>
+          <li>
+            <Link to="/" className="text-black" onClick={() => setIsOpen(false)}>
+              Randevu Oluştur
             </Link>
           </li>
           <li>
-            <Link to="/" className={navLink} onClick={() => setIsOpen(false)}>
-              Kurumsal Danışmanlık
-            </Link>
-          </li>
-          <li>
-            <Link to="/" className={navLink} onClick={() => setIsOpen(false)}>
+            <HashLink to="/#sss" className="text-black" onClick={() => setIsOpen(false)}>
               Sık Sorulanlar
-            </Link>
+            </HashLink>
           </li>
           <li>
-            <Link to="/" className={navLink} onClick={() => setIsOpen(false)}>
+            <HashLink to="/iletisim/#form" className="text-black" onClick={() => setIsOpen(false)}>
               İletişim
-            </Link>
+            </HashLink>
           </li>
         </ul>
 
