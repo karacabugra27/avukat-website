@@ -39,7 +39,7 @@ export default function LawyerCard({ lawyer, ...props }: { lawyer: Lawyer }) {
         <div>
           <h1 className="text-2xl">{`${lawyer.firstName} ${lawyer.lastName}`}</h1>
           <h1 className="text-md text-gray-500">Avukat</h1>
-          <div className="flex flex-wrap gap-3 mt-4">
+          <div className="flex flex-wrap gap-3 mt-6">
             {loading ? (
               <h1>Yükleniyor...</h1>
             ) : (
@@ -49,7 +49,8 @@ export default function LawyerCard({ lawyer, ...props }: { lawyer: Lawyer }) {
                 experiences.map(exp => {
                   return (
                     <div
-                      className="px-2 py-1 mx-auto bg-[var(--color-primary)]/20 text-[var(--color-primary)] text-sm border-1 border-[var(--color-primary)] rounded-lg">
+                      key={exp.id}
+                      className="px-2 py-1 mx-auto bg-[var(--color-primary)]/20 text-[var(--color-primary)] text-xs border-1 border-[var(--color-primary)] rounded">
                       {exp.title}
                     </div>
                   );
