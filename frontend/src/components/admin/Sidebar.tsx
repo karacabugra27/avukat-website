@@ -38,7 +38,7 @@ export default function Sidebar() {
           <CalendarDays width={20} strokeWidth={1.5} />
           <span className="ml-3">Randevular</span>
         </Link>
-        <Link to="/admin"
+        <Link to="/admin/faqs"
           className="flex items-center p-3 rounded-lg hover:bg-gray-800 transition">
           <MessageCircleQuestionMark width={20} strokeWidth={1.5} />
           <span className="ml-3">SSS</span>

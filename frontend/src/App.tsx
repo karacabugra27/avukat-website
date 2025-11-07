@@ -11,6 +11,8 @@ import AdminLayout from "./layouts/AdminLayout";
 import AdminIndex from "./pages/admin/Index";
 import Lawyers from "./pages/admin/Lawyers";
 import AddLawyer from "./pages/admin/AddLawyer";
+import Faqs from "./pages/admin/Faqs";
+import AddFaq from "./pages/admin/AddFaq";
 
 export default function App() {
   return (
@@ -24,6 +26,8 @@ export default function App() {
             <Route index element={<AdminIndex />}></Route>
             <Route path="lawyers" element={<Lawyers />}></Route>
             <Route path="lawyers/add" element={<AddLawyer />}></Route>
+            <Route path="faqs" element={<Faqs />}></Route>
+            <Route path="faqs/add" element={<AddFaq />}></Route>
           </Route>
         </Route>
 
