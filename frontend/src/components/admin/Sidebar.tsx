@@ -7,6 +7,9 @@ export default function Sidebar() {
   const navigate = useNavigate();
 
   function handleLogout() {
+    const confirm = window.confirm("Çıkış yapmak istiyor musunuz?");
+    if(!confirm) return;
+
     localStorage.removeItem("token");
     localStorage.removeItem("expiresAt");
     localStorage.removeItem("role");

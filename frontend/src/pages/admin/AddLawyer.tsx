@@ -7,14 +7,20 @@ import { ArrowLeft } from "lucide-react";
 
 export default function AddLawyer() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState<string>("");
+  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:8080/api/admin/lawyers", email);
+      const token = localStorage.getItem("token");
+      const response = await axios.post("http://localhost:8080/api/admin/lawyers", { email: email }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        }
+      });
       if (response.status === 201) {
         toast.success("Hesap başarılı bir şekilde oluşturuldu.");
         navigate("/admin/lawyers");
@@ -37,7 +43,7 @@ export default function AddLawyer() {
           <p className="text-slate-600">Yeni avukat hesabı ekleyin.</p>
         </div>
         <div>
-          <Link to={'/admin/lawyers'} className="flex gap-2 px-3 py-2 rounded bg-gray-600 hover:bg-gray-700 text-white"><ArrowLeft width={20} />Geri</Link>
+          <Link to={'/admin/lawyers'} className="flex gap-2 px-3 py-2 rounded bg-gray-900 hover:bg-gray-700 text-white"><ArrowLeft width={20} />Geri</Link>
         </div>
       </div>
       <div className="mt-12">

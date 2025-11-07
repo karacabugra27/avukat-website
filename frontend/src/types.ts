@@ -3,7 +3,9 @@ export interface Lawyer {
     bio: string,
     email: string,
     firstName: string,
-    lastName: string
+    lastName: string,
+    profileImage?: string,
+    experiences: Experience[]
 }
 
 export interface Experience {
