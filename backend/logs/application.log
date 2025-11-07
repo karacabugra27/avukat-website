@@ -1207,3 +1207,176 @@ Caused by: org.hibernate.HibernateException: Unable to determine Dialect without
 2025-11-01 15:49:13.095 [INFO] [http-nio-8080-exec-2] traceId= o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
 2025-11-01 15:49:13.096 [INFO] [http-nio-8080-exec-2] traceId= o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
 2025-11-01 15:49:13.097 [INFO] [http-nio-8080-exec-2] traceId= o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-11-07 11:11:39.365 [INFO] [background-preinit] traceId= o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2025-11-07 11:11:39.381 [INFO] [main] traceId= c.a.backend.BackendApplication - Starting BackendApplication using Java 21.0.8 with PID 236 (/Users/efedrkoglu/avukat-website/backend/target/classes started by efedrkoglu in /Users/efedrkoglu/avukat-website/backend)
+2025-11-07 11:11:39.381 [INFO] [main] traceId= c.a.backend.BackendApplication - No active profile set, falling back to 1 default profile: "default"
+2025-11-07 11:11:39.589 [INFO] [main] traceId= o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-07 11:11:39.612 [INFO] [main] traceId= o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 6 JPA repository interfaces.
+2025-11-07 11:11:39.786 [INFO] [main] traceId= o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-11-07 11:11:39.790 [INFO] [main] traceId= o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 11:11:39.791 [INFO] [main] traceId= o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-07 11:11:39.791 [INFO] [main] traceId= o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-07 11:11:39.807 [INFO] [main] traceId= o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-07 11:11:39.807 [INFO] [main] traceId= o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 412 ms
+2025-11-07 11:11:39.860 [INFO] [main] traceId= o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-07 11:11:39.876 [INFO] [main] traceId= org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-07 11:11:39.885 [INFO] [main] traceId= o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-07 11:11:39.961 [INFO] [main] traceId= o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-07 11:11:39.969 [INFO] [main] traceId= com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-07 11:11:40.027 [INFO] [main] traceId= com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7221539
+2025-11-07 11:11:40.027 [INFO] [main] traceId= com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-07 11:11:40.050 [INFO] [main] traceId= o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-07 11:11:40.332 [INFO] [main] traceId= o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-07 11:11:40.377 [INFO] [main] traceId= o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-07 11:11:40.553 [INFO] [main] traceId= o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-11-07 11:11:40.553 [WARN] [main] traceId= o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-11-07 11:11:40.612 [WARN] [main] traceId= o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 11:11:40.825 [INFO] [main] traceId= o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 11:11:40.831 [INFO] [main] traceId= o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-11-07 11:11:40.835 [INFO] [main] traceId= c.a.backend.BackendApplication - Started BackendApplication in 1.6 seconds (process running for 1.689)
+2025-11-07 11:11:40.965 [INFO] [main] traceId= c.a.backend.config.DataInitializer - Super admin hesabı oluşturuldu (admin@avukat.com)
+2025-11-07 11:11:43.607 [INFO] [http-nio-8080-exec-1] traceId= o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-07 11:11:43.607 [INFO] [http-nio-8080-exec-1] traceId= o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-07 11:11:43.608 [INFO] [http-nio-8080-exec-1] traceId= o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-11-07 11:12:18.792 [INFO] [SpringApplicationShutdownHook] traceId= o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-07 11:12:18.799 [INFO] [tomcat-shutdown] traceId= o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-11-07 11:12:18.807 [INFO] [SpringApplicationShutdownHook] traceId= o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-07 11:12:18.809 [INFO] [SpringApplicationShutdownHook] traceId= com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-07 11:12:18.811 [INFO] [SpringApplicationShutdownHook] traceId= com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-07 11:12:21.963 [INFO] [background-preinit] traceId= o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2025-11-07 11:12:21.978 [INFO] [main] traceId= c.a.backend.BackendApplication - Starting BackendApplication using Java 21.0.8 with PID 430 (/Users/efedrkoglu/avukat-website/backend/target/classes started by efedrkoglu in /Users/efedrkoglu/avukat-website/backend)
+2025-11-07 11:12:21.979 [INFO] [main] traceId= c.a.backend.BackendApplication - No active profile set, falling back to 1 default profile: "default"
+2025-11-07 11:12:22.165 [INFO] [main] traceId= o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-07 11:12:22.188 [INFO] [main] traceId= o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 6 JPA repository interfaces.
+2025-11-07 11:12:22.359 [INFO] [main] traceId= o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-11-07 11:12:22.363 [INFO] [main] traceId= o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 11:12:22.363 [INFO] [main] traceId= o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-07 11:12:22.363 [INFO] [main] traceId= o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-07 11:12:22.378 [INFO] [main] traceId= o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-07 11:12:22.379 [INFO] [main] traceId= o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 386 ms
+2025-11-07 11:12:22.423 [INFO] [main] traceId= o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-07 11:12:22.440 [INFO] [main] traceId= org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-07 11:12:22.449 [INFO] [main] traceId= o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-07 11:12:22.517 [INFO] [main] traceId= o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-07 11:12:22.525 [INFO] [main] traceId= com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-07 11:12:22.579 [INFO] [main] traceId= com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@710afd47
+2025-11-07 11:12:22.580 [INFO] [main] traceId= com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-07 11:12:22.600 [INFO] [main] traceId= o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-07 11:12:22.863 [INFO] [main] traceId= o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-07 11:12:22.912 [INFO] [main] traceId= o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-07 11:12:23.075 [INFO] [main] traceId= o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-11-07 11:12:23.075 [WARN] [main] traceId= o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-11-07 11:12:23.133 [WARN] [main] traceId= o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 11:12:23.326 [INFO] [main] traceId= o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 11:12:23.331 [INFO] [main] traceId= o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-11-07 11:12:23.335 [INFO] [main] traceId= c.a.backend.BackendApplication - Started BackendApplication in 1.493 seconds (process running for 1.579)
+2025-11-07 11:12:23.460 [INFO] [main] traceId= c.a.backend.config.DataInitializer - Super admin hesabı oluşturuldu (admin@avukat.com)
+2025-11-07 11:12:25.922 [INFO] [http-nio-8080-exec-1] traceId= o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-07 11:12:25.922 [INFO] [http-nio-8080-exec-1] traceId= o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-07 11:12:25.923 [INFO] [http-nio-8080-exec-1] traceId= o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-11-07 11:13:04.894 [INFO] [SpringApplicationShutdownHook] traceId= o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-07 11:13:04.901 [INFO] [tomcat-shutdown] traceId= o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-11-07 11:13:04.909 [INFO] [SpringApplicationShutdownHook] traceId= o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-07 11:13:04.912 [INFO] [SpringApplicationShutdownHook] traceId= com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-07 11:13:04.914 [INFO] [SpringApplicationShutdownHook] traceId= com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-07 11:13:07.695 [INFO] [background-preinit] traceId= o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2025-11-07 11:13:07.710 [INFO] [main] traceId= c.a.backend.BackendApplication - Starting BackendApplication using Java 21.0.8 with PID 856 (/Users/efedrkoglu/avukat-website/backend/target/classes started by efedrkoglu in /Users/efedrkoglu/avukat-website/backend)
+2025-11-07 11:13:07.711 [INFO] [main] traceId= c.a.backend.BackendApplication - No active profile set, falling back to 1 default profile: "default"
+2025-11-07 11:13:07.913 [INFO] [main] traceId= o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-07 11:13:07.937 [INFO] [main] traceId= o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 21 ms. Found 6 JPA repository interfaces.
+2025-11-07 11:13:08.109 [INFO] [main] traceId= o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-11-07 11:13:08.113 [INFO] [main] traceId= o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 11:13:08.114 [INFO] [main] traceId= o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-07 11:13:08.114 [INFO] [main] traceId= o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-07 11:13:08.130 [INFO] [main] traceId= o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-07 11:13:08.130 [INFO] [main] traceId= o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 405 ms
+2025-11-07 11:13:08.183 [INFO] [main] traceId= o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-07 11:13:08.197 [INFO] [main] traceId= org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-07 11:13:08.206 [INFO] [main] traceId= o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-07 11:13:08.289 [INFO] [main] traceId= o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-07 11:13:08.297 [INFO] [main] traceId= com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-07 11:13:08.357 [INFO] [main] traceId= com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@44de8e00
+2025-11-07 11:13:08.357 [INFO] [main] traceId= com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-07 11:13:08.379 [INFO] [main] traceId= o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-07 11:13:08.662 [INFO] [main] traceId= o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-07 11:13:08.713 [INFO] [main] traceId= o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-07 11:13:08.883 [INFO] [main] traceId= o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-11-07 11:13:08.884 [WARN] [main] traceId= o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-11-07 11:13:08.941 [WARN] [main] traceId= o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 11:13:09.141 [INFO] [main] traceId= o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 11:13:09.146 [INFO] [main] traceId= o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-11-07 11:13:09.149 [INFO] [main] traceId= c.a.backend.BackendApplication - Started BackendApplication in 1.58 seconds (process running for 1.669)
+2025-11-07 11:13:09.285 [INFO] [main] traceId= c.a.backend.config.DataInitializer - Super admin hesabı oluşturuldu (admin@avukat.com)
+2025-11-07 11:13:09.970 [INFO] [http-nio-8080-exec-1] traceId= o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-07 11:13:09.970 [INFO] [http-nio-8080-exec-1] traceId= o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-07 11:13:09.971 [INFO] [http-nio-8080-exec-1] traceId= o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-11-07 11:13:50.111 [INFO] [SpringApplicationShutdownHook] traceId= o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-07 11:13:50.117 [INFO] [tomcat-shutdown] traceId= o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-11-07 11:13:50.124 [INFO] [SpringApplicationShutdownHook] traceId= o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-07 11:13:50.127 [INFO] [SpringApplicationShutdownHook] traceId= com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-07 11:13:50.129 [INFO] [SpringApplicationShutdownHook] traceId= com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-07 11:13:51.945 [INFO] [background-preinit] traceId= o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2025-11-07 11:13:51.959 [INFO] [main] traceId= c.a.backend.BackendApplication - Starting BackendApplication using Java 21.0.8 with PID 1101 (/Users/efedrkoglu/avukat-website/backend/target/classes started by efedrkoglu in /Users/efedrkoglu/avukat-website/backend)
+2025-11-07 11:13:51.959 [INFO] [main] traceId= c.a.backend.BackendApplication - No active profile set, falling back to 1 default profile: "default"
+2025-11-07 11:13:52.145 [INFO] [main] traceId= o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-07 11:13:52.166 [INFO] [main] traceId= o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 19 ms. Found 6 JPA repository interfaces.
+2025-11-07 11:13:52.331 [INFO] [main] traceId= o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-11-07 11:13:52.335 [INFO] [main] traceId= o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 11:13:52.336 [INFO] [main] traceId= o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-07 11:13:52.336 [INFO] [main] traceId= o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-07 11:13:52.353 [INFO] [main] traceId= o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-07 11:13:52.353 [INFO] [main] traceId= o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 380 ms
+2025-11-07 11:13:52.400 [INFO] [main] traceId= o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-07 11:13:52.412 [INFO] [main] traceId= org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-07 11:13:52.421 [INFO] [main] traceId= o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-07 11:13:52.494 [INFO] [main] traceId= o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-07 11:13:52.502 [INFO] [main] traceId= com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-07 11:13:52.561 [INFO] [main] traceId= com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7221539
+2025-11-07 11:13:52.562 [INFO] [main] traceId= com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-07 11:13:52.582 [INFO] [main] traceId= o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-07 11:13:52.843 [INFO] [main] traceId= o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-07 11:13:52.899 [INFO] [main] traceId= o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-07 11:13:53.060 [INFO] [main] traceId= o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-11-07 11:13:53.061 [WARN] [main] traceId= o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-11-07 11:13:53.119 [WARN] [main] traceId= o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 11:13:53.311 [INFO] [main] traceId= o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 11:13:53.316 [INFO] [main] traceId= o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-11-07 11:13:53.320 [INFO] [main] traceId= c.a.backend.BackendApplication - Started BackendApplication in 1.498 seconds (process running for 1.583)
+2025-11-07 11:13:53.448 [INFO] [main] traceId= c.a.backend.config.DataInitializer - Super admin hesabı oluşturuldu (admin@avukat.com)
+2025-11-07 11:13:55.509 [INFO] [http-nio-8080-exec-1] traceId= o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-07 11:13:55.509 [INFO] [http-nio-8080-exec-1] traceId= o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-07 11:13:55.510 [INFO] [http-nio-8080-exec-1] traceId= o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-11-07 12:57:38.314 [INFO] [http-nio-8080-exec-7] traceId=c6722dda-a4c4-4094-9e94-ee53fb342c3a c.a.b.service.impl.AuthServiceImpl - User admin@avukat.com logged in with authorities [ROLE_SUPER_ADMIN]
+2025-11-07 12:58:26.418 [INFO] [http-nio-8080-exec-8] traceId=1dbabe7c-9fcd-41eb-adfe-6d3ff097efd5 c.a.b.service.impl.LawyerServiceImpl - [traceId=1dbabe7c-9fcd-41eb-adfe-6d3ff097efd5] Avukat oluşturuldu id=2, email=deneme@email.com
+2025-11-07 12:59:00.303 [INFO] [http-nio-8080-exec-10] traceId=5fb91bb7-6d63-4bb2-bf05-5920117ea389 c.a.b.service.impl.LawyerServiceImpl - [traceId=5fb91bb7-6d63-4bb2-bf05-5920117ea389] Avukat oluşturuldu id=3, email=deneme2@email.com
+2025-11-07 13:07:23.494 [WARN] [HikariPool-1:housekeeper] traceId= com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Retrograde clock change detected (housekeeper delta=29s867ms), soft-evicting connections from pool.
+2025-11-07 13:44:10.983 [INFO] [http-nio-8080-exec-9] traceId=5d8e02e8-02ab-4dcb-98bb-b10434323512 c.a.b.service.impl.AuthServiceImpl - User admin@avukat.com logged in with authorities [ROLE_SUPER_ADMIN]
+2025-11-07 13:49:46.599 [INFO] [http-nio-8080-exec-2] traceId=22e43cd5-8420-4082-a25d-b3dc09a78b91 c.a.b.service.impl.AuthServiceImpl - User admin@avukat.com logged in with authorities [ROLE_SUPER_ADMIN]
