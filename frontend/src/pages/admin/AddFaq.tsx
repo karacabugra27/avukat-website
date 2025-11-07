@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function AddFaq() {
   const [question, setQuestion] = useState("");
@@ -9,6 +11,20 @@ export default function AddFaq() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setLoading(true);
+    try {
+      const response = await axios.post("http://localhost:8080/api/faq", { question: question, answer: answer});
+      if(response.status === 201) {
+        toast.success("Soru eklendi.");
+      }
+    }
+    catch(error: any) {
+      console.log(error);
+      toast.error("İşlem başarısız.")
+    }
+    finally {
+      setLoading(false);
+    }
   }
   
   return (

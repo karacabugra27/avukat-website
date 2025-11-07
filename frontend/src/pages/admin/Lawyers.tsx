@@ -94,7 +94,7 @@ export default function Lawyers() {
                 <tbody>
                   {lawyers.map(lawyer => {
                     return (
-                      <tr className="hover:bg-gray-100" key={lawyer.id}>
+                      <tr className="hover:bg-gray-50" key={lawyer.id}>
                         <td>
                           <div className="flex items-center gap-3">
                             <div className="avatar">
@@ -135,7 +135,7 @@ export default function Lawyers() {
                         </td>
                         <th>
                           <div className="flex gap-2">
-                            <button className="btn btn-ghost btn-xs">Detaylar</button>
+                            <button className="btn">Detaylar</button>
                             <button
                               onClick={() => deleteLawyer(lawyer.id)}
                               className="btn bg-red-500 hover:bg-red-600 text-white">
