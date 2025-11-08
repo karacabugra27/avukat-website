@@ -16,12 +16,22 @@ export default function Login() {
     try {
       const response = await axios.post("http://localhost:8080/auth/login", { email, password });
       if(response.status === 200) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("expiresAt");
+        localStorage.removeItem("role");
+
         localStorage.setItem("token", response.data.accessToken);
         localStorage.setItem("expiresAt", response.data.expiresAt);
         localStorage.setItem("role", response.data.role);
 
         toast.success("Başarıyla giriş yaptınız.");
-        navigate("/admin");
+        if(localStorage.getItem("role") === "SUPER_ADMIN") {
+          navigate("/admin");
+        }
+        else {
+          localStorage.setItem("email", email);
+          navigate("/lawyer");
+        }
       }
     }
     catch(error: any) {

@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import PrivateRoute from "./components/admin/PrivateRoute";
+import AdminRoute from "./components/admin/AdminRoute";
+import LawyerRoute from "./components/admin/lawyer/LawyerRoute";
+
 //site
 import IndexLayout from "./layouts/IndexLayout";
 import Index from "./pages/site/Index";
@@ -14,6 +16,10 @@ import AddLawyer from "./pages/admin/AddLawyer";
 import Faqs from "./pages/admin/Faqs";
 import AddFaq from "./pages/admin/AddFaq";
 
+//lawyer
+import LawyerLayout from "./layouts/LawyerLayout";
+import LawyerIndex from "./pages/admin/lawyer/Index";
+
 export default function App() {
   return (
     <Router>
@@ -21,13 +27,20 @@ export default function App() {
         <Route path="/login" element={<Login />}></Route>
 
         {/* Admin */}
-        <Route element={<PrivateRoute />}>
+        <Route element={<AdminRoute />}>
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminIndex />}></Route>
             <Route path="lawyers" element={<Lawyers />}></Route>
             <Route path="lawyers/add" element={<AddLawyer />}></Route>
             <Route path="faqs" element={<Faqs />}></Route>
             <Route path="faqs/add" element={<AddFaq />}></Route>
+          </Route>
+        </Route>
+
+        {/* Lawyer */}
+        <Route element={<LawyerRoute />}>
+          <Route path="/lawyer" element={<LawyerLayout />}>
+            <Route index element={<LawyerIndex />}></Route>
           </Route>
         </Route>
 

@@ -8,6 +8,18 @@ export interface Lawyer {
     experiences: Experience[]
 }
 
+export const emptyLawyer = (): Lawyer => {
+    return {
+        id: 0,
+        bio: "",
+        email: "",
+        firstName: "",
+        lastName: "",
+        profileImage: "",
+        experiences: []
+    }
+}
+
 export interface Experience {
     id?: number,
     lawyerId?: number,

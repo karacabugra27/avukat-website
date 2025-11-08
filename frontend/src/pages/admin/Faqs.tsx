@@ -121,7 +121,7 @@ export default function Faqs() {
       </div>
       {/* Open the modal using document.getElementById('ID').showModal() method */}
       <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
+        <div className="modal-box max-w-4xl">
           <h3 className="font-bold text-lg">{question}</h3>
           <p className="py-4">{answer}</p>
           <div className="modal-action">
