@@ -20,7 +20,9 @@ export default function LawyerIndex() {
           if (response.data.firstName === null || response.data.firstName === "") {
             //create account
           }
-          setLawyer(response.data);
+          else {
+            setLawyer(response.data);
+          }
         }
       }
       catch (error: any) {

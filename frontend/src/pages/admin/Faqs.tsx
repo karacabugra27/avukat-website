@@ -1,4 +1,4 @@
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -98,13 +98,15 @@ export default function Faqs() {
                       return (
                         <tr className="hover:bg-gray-50" key={faq.id}>
                           <td>{count++}</td>
-                          <td className="font-bold">{faq.question}</td>
+                          <td className="font-bold w-2xl">{faq.question}</td>
                           <th>
                             <div className="flex gap-2">
-                              <button className="btn" onClick={() => showAnswer(faq.question, faq.answer)}>Cevabı Görüntüle</button>
+                              <button className="btn btn-sm" onClick={() => showAnswer(faq.question, faq.answer)}>
+                                <Eye width={15} />
+                              </button>
                               <button
                                 onClick={() => deleteFaq(faq.id)}
-                                className="btn bg-red-500 hover:bg-red-600 text-white">
+                                className="btn btn-sm bg-red-500 hover:bg-red-600 text-white">
                                 <Trash2 width={15} />
                               </button>
                             </div>

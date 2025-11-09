@@ -7,6 +7,7 @@ import IndexLayout from "./layouts/IndexLayout";
 import Index from "./pages/site/Index";
 import Contact from "./pages/site/Contact";
 import Login from "./pages/Login";
+import RandevuAl from "./pages/site/Appointment";
 
 //admin
 import AdminLayout from "./layouts/AdminLayout";
@@ -48,6 +49,7 @@ export default function App() {
         <Route path="/" element={<IndexLayout />}>
           <Route index element={<Index />}></Route>
           <Route path="iletisim" element={<Contact />}></Route>
+          <Route path="randevu" element={<RandevuAl />}></Route>
         </Route>
       </Routes>
     </Router>

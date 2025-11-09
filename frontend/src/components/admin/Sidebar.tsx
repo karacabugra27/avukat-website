@@ -13,6 +13,7 @@ export default function Sidebar() {
     localStorage.removeItem("token");
     localStorage.removeItem("expiresAt");
     localStorage.removeItem("role");
+    //localStorage.removeItem("id");
     toast.success("Başarıyla çıkış yaptınız.");
     navigate("/login", { replace: true });
   }

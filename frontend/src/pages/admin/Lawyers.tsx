@@ -82,7 +82,7 @@ export default function Lawyers() {
             <h1>Henüz avukat eklenmemiş.</h1>
           ) : (
             <div className="overflow-x-auto">
-              <table className="table">
+              <table className="table bg-white">
                 {/* head */}
                 <thead>
                   <tr>
@@ -122,7 +122,7 @@ export default function Lawyers() {
                               lawyer.experiences.map(experience => {
                                 return(
                                   <div
-                                    className="px-2 py-1 rounded bg-gray-100 border-1 border-gray-500 text-gray-500 hover:bg-gray-200"
+                                    className="px-2 py-1 rounded text-xs bg-gray-100 border-1 border-gray-500 text-gray-500 hover:bg-gray-200"
                                     key={experience.id}>
                                     {experience.title}
                                   </div>
@@ -135,10 +135,10 @@ export default function Lawyers() {
                         </td>
                         <th>
                           <div className="flex gap-2">
-                            <button className="btn">Detaylar</button>
+                            <button className="btn btn-sm">Detaylar</button>
                             <button
                               onClick={() => deleteLawyer(lawyer.id)}
-                              className="btn bg-red-500 hover:bg-red-600 text-white">
+                              className="btn btn-sm bg-red-500 hover:bg-red-600 text-white">
                                 <Trash2 width={15}/>
                             </button>
                           </div>

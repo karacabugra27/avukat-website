@@ -7,7 +7,7 @@ export default function AdminLayout() {
     <>
       <main className="flex">
         <Sidebar />
-        <div className="w-full p-12">
+        <div className="w-full p-12 bg-gray-100">
           <Outlet />
         </div>
       </main>

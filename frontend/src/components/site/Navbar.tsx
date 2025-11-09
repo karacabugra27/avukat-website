@@ -20,7 +20,7 @@ export default function Navbar() {
       <ul className="hidden md:flex items-center gap-6 text-lg">
         <li><HashLink to="/#index" className={navLink}>Ana Sayfa</HashLink></li>
         <li><HashLink smooth to="/#avukatlar" className={navLink}>Avukatlar</HashLink></li>
-        <li><Link to="/" className={navLink}>Randevu Oluştur</Link></li>
+        <li><Link to="/randevu" className={navLink}>Randevu Oluştur</Link></li>
         <li><HashLink smooth to="/#sss" className={navLink}>Sık Sorulanlar</HashLink></li>
         <li><HashLink to="/iletisim/#form" className={navLink}>İletişim</HashLink></li>
         <li><button className={btnSecondary}>Giriş</button></li>
@@ -60,7 +60,7 @@ export default function Navbar() {
             </HashLink>
           </li>
           <li>
-            <Link to="/" className="text-black" onClick={() => setIsOpen(false)}>
+            <Link to="/randevu" className="text-black" onClick={() => setIsOpen(false)}>
               Randevu Oluştur
             </Link>
           </li>
