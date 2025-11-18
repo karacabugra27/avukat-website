@@ -22,8 +22,6 @@ public class ResponseAppointment {
 
     private LocalTime endTime;
 
-    private Long scheduleId;
-
     private Long lawyerId;
 
     private String lawyerFirstName;

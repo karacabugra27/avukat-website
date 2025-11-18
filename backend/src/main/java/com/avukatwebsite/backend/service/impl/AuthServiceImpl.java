@@ -37,6 +37,7 @@ public class AuthServiceImpl implements AuthService {
         log.info("User {} logged in with authorities {}", lawyer.getEmail(), authentication.getAuthorities());
 
         return new AuthResponse(
+            lawyer.getId(),
             token,
             jwtService.getExpiration(token),
             lawyer.getRole()

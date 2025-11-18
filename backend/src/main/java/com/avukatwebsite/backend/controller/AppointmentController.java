@@ -32,9 +32,9 @@ public class AppointmentController {
         return ResponseEntity.ok(appointmentService.getAllAppointments());
     }
 
-    @GetMapping("/schedule/{id}")
-    public ResponseEntity<List<ResponseAppointment>> getByScheduleId(@Positive @PathVariable Long id) {
-        return ResponseEntity.ok(appointmentService.getByScheduleId(id));
+    @GetMapping("/lawyer/{id}")
+    public ResponseEntity<List<ResponseAppointment>> getByLawyerId(@Positive @PathVariable Long id) {
+        return ResponseEntity.ok(appointmentService.getByLawyerId(id));
     }
 
     @DeleteMapping("/{id}")

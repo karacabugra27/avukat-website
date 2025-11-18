@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.util.List;
 
 @Getter
 @Setter
@@ -30,7 +29,5 @@ public class ResponseLawyerSchedule {
     private LocalTime endTime;
 
     private boolean dayOff;
-
-    private List<ResponseAppointment> appointments;
 
 }

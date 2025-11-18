@@ -22,6 +22,8 @@ public enum ErrorType {
     APPOINTMENT_TIME_INVALID("APP_400_001", HttpStatus.BAD_REQUEST, "Randevu bitiş saati başlangıç saatinden sonra olmalıdır"),
     APPOINTMENT_DAY_OFF("APP_400_002", HttpStatus.BAD_REQUEST, "Tatil gününde randevu oluşturulamaz"),
 
+    CONTACT_MESSAGE_NOT_FOUND("CON_404_001", HttpStatus.NOT_FOUND, "İletişim mesajı bulunamadı"),
+
     VALIDATION_FAILED("GEN_400_001", HttpStatus.BAD_REQUEST, "Geçersiz istek"),
     GENERIC_BUSINESS_ERROR("GEN_400_002", HttpStatus.BAD_REQUEST, "İş kuralı ihlali"),
     INTERNAL_SERVER_ERROR("GEN_500_001", HttpStatus.INTERNAL_SERVER_ERROR, "Beklenmeyen bir hata oluştu"),

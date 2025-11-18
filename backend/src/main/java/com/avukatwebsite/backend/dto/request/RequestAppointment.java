@@ -18,7 +18,7 @@ import java.time.LocalTime;
 public class RequestAppointment {
 
     @NotNull
-    private Long scheduleId;
+    private Long lawyerId;
 
     @NotNull
     @FutureOrPresent

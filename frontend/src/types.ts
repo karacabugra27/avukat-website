@@ -41,7 +41,9 @@ export interface Appointment {
     appointmentDate: Date,
     endTime: Date,
     startTime: Date,
-    lawyerSchedule: number,
+    lawyerId: number,
+    lawyerFirstName: string,
+    lawyerLastName: string,
     clientFirstName: string,
     clientLastName: string,
     clientPhone: string

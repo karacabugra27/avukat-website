@@ -1,5 +1,8 @@
 import { Send, User, AtSign, Phone, Tag, MessageCircle, Info, MapPin, Share2 } from "lucide-react";
 import { Instagram, Facebook, Twitter, Linkedin } from "lucide-react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { btnPrimary } from "../../styles";
@@ -7,8 +10,42 @@ import { btnPrimary } from "../../styles";
 export default function Contact() {
   const inputStyles = "px-3 py-2 text-sm text-black w-full border-1 border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary";
 
-  function handleFormSubmit(e: React.FormEvent) {
+  const [form, setForm] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    topic: "",
+    message: ""
+  });
+  const [submitting, setSubmitting] = useState(false);
+
+  function handleChange(name: keyof typeof form, value: string) {
+    setForm(prev => ({ ...prev, [name]: value }));
+  }
+
+  async function handleFormSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (form.message.trim().length < 10) {
+      toast.error("Mesaj en az 10 karakter olmalıdır.");
+      return;
+    }
+    setSubmitting(true);
+    try {
+      await axios.post("http://localhost:8080/api/contact", form);
+      toast.success("Mesajınızı aldık. En kısa sürede size dönüş yapacağız.");
+      setForm({
+        fullName: "",
+        email: "",
+        phone: "",
+        topic: "",
+        message: ""
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error("Mesaj gönderilirken bir hata oluştu.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -25,42 +62,81 @@ export default function Contact() {
             <div className="col-span-2">
               <fieldset className="fieldset">
                 <legend className="fieldset-legend"><User width={18} strokeWidth={1.5} />Ad Soyad</legend>
-                <input type="text" className={inputStyles} placeholder="Ad Soyad" />
+                <input
+                  type="text"
+                  className={inputStyles}
+                  placeholder="Ad Soyad"
+                  value={form.fullName}
+                  required
+                  onChange={(e) => handleChange("fullName", e.target.value)}
+                />
               </fieldset>
             </div>
             <div className="col-span-1">
               <fieldset className="fieldset">
                 <legend className="fieldset-legend"><AtSign width={18} strokeWidth={1.5} />E-posta</legend>
-                <input type="mail" className={inputStyles} placeholder="ornek@email.com" />
+                <input
+                  type="email"
+                  className={inputStyles}
+                  placeholder="ornek@email.com"
+                  value={form.email}
+                  required
+                  onChange={(e) => handleChange("email", e.target.value)}
+                />
               </fieldset>
             </div>
             <div className="col-span-1">
               <fieldset className="fieldset">
                 <legend className="fieldset-legend"><Phone width={18} strokeWidth={1.5} />Telefon</legend>
-                <input type="text" className={inputStyles} placeholder="0555 555 55 55" />
+                <input
+                  type="text"
+                  className={inputStyles}
+                  placeholder="0555 555 55 55"
+                  value={form.phone}
+                  required
+                  onChange={(e) => handleChange("phone", e.target.value)}
+                />
               </fieldset>
             </div>
             <div className="col-span-2">
               <fieldset className="fieldset">
                 <legend className="fieldset-legend"><Tag width={18} strokeWidth={1.5} />Konu</legend>
-                <select name="" id="" className={inputStyles}>
-                  <option value="">Konu Seçiniz</option>
-                  <option value="">Genel Bilgi</option>
-                  <option value="">Görüş ve Öneriler</option>
-                  <option value="">Şikayet</option>
-                  <option value="">Diğer</option>
+                <select
+                  className={inputStyles}
+                  value={form.topic}
+                  required
+                  onChange={(e) => handleChange("topic", e.target.value)}
+                >
+                  <option value="" disabled>Konu Seçiniz</option>
+                  <option value="Genel Bilgi">Genel Bilgi</option>
+                  <option value="Görüş ve Öneriler">Görüş ve Öneriler</option>
+                  <option value="Şikayet">Şikayet</option>
+                  <option value="Diğer">Diğer</option>
                 </select>
               </fieldset>
             </div>
             <div className="col-span-2">
               <fieldset className="fieldset">
                 <legend className="fieldset-legend"><MessageCircle width={18} strokeWidth={1.5} />Mesajınız</legend>
-                <textarea name="" id="" placeholder="Mesajınız..." className={inputStyles} rows={5}></textarea>
+                <textarea
+                  placeholder="Mesajınız..."
+                  className={inputStyles}
+                  rows={5}
+                  required
+                  value={form.message}
+                  onChange={(e) => handleChange("message", e.target.value)}
+                ></textarea>
                 <p className="label">En az 10 karakter</p>
               </fieldset>
             </div>
             <div className="col-span-2 flex justify-end">
-              <button className={`${btnPrimary} px-16`}><Send width={18} strokeWidth={1.5} />Gönder</button>
+              <button
+                className={`${btnPrimary} px-16 disabled:cursor-not-allowed`}
+                disabled={submitting}
+              >
+                <Send width={18} strokeWidth={1.5} />
+                {submitting ? "Gönderiliyor..." : "Gönder"}
+              </button>
             </div>
           </form>
         </div>

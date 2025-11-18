@@ -11,7 +11,7 @@ public interface AppointmentService {
 
     List<ResponseAppointment> getAllAppointments();
 
-    List<ResponseAppointment> getByScheduleId(Long scheduleId);
+    List<ResponseAppointment> getByLawyerId(Long lawyerId);
 
     void delete(Long id);
 

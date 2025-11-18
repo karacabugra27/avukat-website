@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -38,7 +37,6 @@ public class LawyerScheduleServiceImpl implements LawyerScheduleService {
 
         LawyerSchedule entity = lawyerScheduleMapper.toEntity(dto);
         entity.setLawyer(lawyer);
-        entity.setAppointments(new ArrayList<>());
 
         validateTimeRange(entity.getStartTime(), entity.getEndTime(), entity.isDayOff());
 

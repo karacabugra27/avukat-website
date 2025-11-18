@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR, uses = AppointmentMapper.class)
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface LawyerScheduleMapper {
 
     @Mapping(source = "lawyer.id", target = "lawyerId")
@@ -17,7 +17,6 @@ public interface LawyerScheduleMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(source = "lawyerId", target = "lawyer.id")
-    @Mapping(target = "appointments", ignore = true)
     LawyerSchedule toEntity(RequestLawyerSchedule dto);
 
 }

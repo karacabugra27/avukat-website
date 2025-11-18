@@ -19,12 +19,12 @@ export default function Login() {
         localStorage.removeItem("token");
         localStorage.removeItem("expiresAt");
         localStorage.removeItem("role");
-        //localStorage.removeItem("id");
+        localStorage.removeItem("id");
 
         localStorage.setItem("token", response.data.accessToken);
         localStorage.setItem("expiresAt", response.data.expiresAt);
         localStorage.setItem("role", response.data.role);
-        //localStorage.setItem("id", response.data.id);
+        localStorage.setItem("id", response.data.id);
 
         toast.success("Başarıyla giriş yaptınız.");
         if(localStorage.getItem("role") === "SUPER_ADMIN") {

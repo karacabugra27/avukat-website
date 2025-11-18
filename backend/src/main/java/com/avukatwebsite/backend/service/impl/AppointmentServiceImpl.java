@@ -4,6 +4,7 @@ import com.avukatwebsite.backend.config.TraceIdFilter;
 import com.avukatwebsite.backend.dto.request.RequestAppointment;
 import com.avukatwebsite.backend.dto.response.ResponseAppointment;
 import com.avukatwebsite.backend.entity.Appointment;
+import com.avukatwebsite.backend.entity.Lawyer;
 import com.avukatwebsite.backend.entity.LawyerSchedule;
 import com.avukatwebsite.backend.exception.BusinessException;
 import com.avukatwebsite.backend.exception.ErrorType;
@@ -11,12 +12,14 @@ import com.avukatwebsite.backend.exception.ResourceNotFoundException;
 import com.avukatwebsite.backend.mapper.AppointmentMapper;
 import com.avukatwebsite.backend.repository.AppointmentRepository;
 import com.avukatwebsite.backend.repository.LawyerScheduleRepository;
+import com.avukatwebsite.backend.repository.LawyerRepository;
 import com.avukatwebsite.backend.service.AppointmentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -28,24 +31,20 @@ public class AppointmentServiceImpl implements AppointmentService {
     private final LawyerScheduleRepository lawyerScheduleRepository;
     private final AppointmentRepository appointmentRepository;
     private final AppointmentMapper appointmentMapper;
+    private final LawyerRepository lawyerRepository;
 
     @Override
     public ResponseAppointment createAppointment(RequestAppointment dto) {
         validateTimeRange(dto.getStartTime(), dto.getEndTime());
 
-        LawyerSchedule schedule = lawyerScheduleRepository.findById(dto.getScheduleId())
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        ErrorType.APPOINTMENT_SCHEDULE_NOT_FOUND,
-                        "Çalışma takvimi bulunamadı: " + dto.getScheduleId()));
-
+        Lawyer lawyer = findLawyer(dto.getLawyerId());
+        LawyerSchedule schedule = findScheduleForDate(lawyer.getId(), dto.getAppointmentDate());
         ensureScheduleAllowsAppointment(schedule, dto.getStartTime(), dto.getEndTime());
 
-        Appointment entity = appointmentMapper.toEntity(dto, schedule);
-        entity.setSchedule(schedule);
-
+        Appointment entity = appointmentMapper.toEntity(dto, lawyer);
         Appointment saved = appointmentRepository.save(entity);
-        log.info("[traceId={}] Randevu oluşturuldu id={}, scheduleId={}, appointmentDate={}",
-                traceId(), saved.getId(), schedule.getId(), saved.getAppointmentDate());
+        log.info("[traceId={}] Randevu oluşturuldu id={}, lawyerId={}, appointmentDate={}",
+                traceId(), saved.getId(), lawyer.getId(), saved.getAppointmentDate());
         return appointmentMapper.toDto(saved);
     }
 
@@ -58,8 +57,8 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public List<ResponseAppointment> getByScheduleId(Long scheduleId) {
-        return appointmentRepository.findByScheduleId(scheduleId)
+    public List<ResponseAppointment> getByLawyerId(Long lawyerId) {
+        return appointmentRepository.findByLawyerId(lawyerId)
                 .stream()
                 .map(appointmentMapper::toDto)
                 .toList();
@@ -83,12 +82,9 @@ public class AppointmentServiceImpl implements AppointmentService {
                         ErrorType.APPOINTMENT_NOT_FOUND,
                         "Randevu bulunamadı: " + id));
 
-        if (dto.getScheduleId() != null && !dto.getScheduleId().equals(entity.getSchedule().getId())) {
-            LawyerSchedule schedule = lawyerScheduleRepository.findById(dto.getScheduleId())
-                    .orElseThrow(() -> new ResourceNotFoundException(
-                            ErrorType.APPOINTMENT_SCHEDULE_NOT_FOUND,
-                            "Çalışma takvimi bulunamadı: " + dto.getScheduleId()));
-            entity.setSchedule(schedule);
+        if (dto.getLawyerId() != null && !dto.getLawyerId().equals(entity.getLawyer().getId())) {
+            Lawyer lawyer = findLawyer(dto.getLawyerId());
+            entity.setLawyer(lawyer);
         }
 
         if (dto.getAppointmentDate() != null) {
@@ -111,12 +107,33 @@ public class AppointmentServiceImpl implements AppointmentService {
         }
 
         validateTimeRange(entity.getStartTime(), entity.getEndTime());
-        ensureScheduleAllowsAppointment(entity.getSchedule(), entity.getStartTime(), entity.getEndTime());
+        LawyerSchedule schedule = findScheduleForDate(entity.getLawyer().getId(), entity.getAppointmentDate());
+        ensureScheduleAllowsAppointment(schedule, entity.getStartTime(), entity.getEndTime());
 
         Appointment saved = appointmentRepository.save(entity);
-        log.info("[traceId={}] Randevu güncellendi id={}, scheduleId={}",
-                traceId(), id, entity.getSchedule().getId());
+        log.info("[traceId={}] Randevu güncellendi id={}, lawyerId={}",
+                traceId(), id, entity.getLawyer().getId());
         return appointmentMapper.toDto(saved);
+    }
+
+    private Lawyer findLawyer(Long lawyerId) {
+        if (lawyerId == null) {
+            throw new BusinessException(ErrorType.GENERIC_BUSINESS_ERROR, "Avukat seçilmelidir");
+        }
+        return lawyerRepository.findById(lawyerId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        ErrorType.LAWYER_NOT_FOUND,
+                        "Avukat bulunamadı: " + lawyerId));
+    }
+
+    private LawyerSchedule findScheduleForDate(Long lawyerId, LocalDate appointmentDate) {
+        if (appointmentDate == null) {
+            throw new BusinessException(ErrorType.GENERIC_BUSINESS_ERROR, "Randevu tarihi seçilmelidir");
+        }
+        return lawyerScheduleRepository.findByLawyerIdAndDayOfWeek(lawyerId, appointmentDate.getDayOfWeek())
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        ErrorType.APPOINTMENT_SCHEDULE_NOT_FOUND,
+                        "Çalışma takvimi bulunamadı: " + appointmentDate.getDayOfWeek()));
     }
 
     private void validateTimeRange(LocalTime start, LocalTime end) {
